@@ -1,0 +1,55 @@
+//  --------------------------------------------------------------------------------
+//  _function.scss
+//  --------------------------------------------------------------------------------
+
+//  Functions
+//   ├─ HSB to HSL
+//   └─ Color mixing
+
+
+
+
+
+//  --------------------------------------------------------------------------------
+//  Functions
+//  --------------------------------------------------------------------------------
+
+//  HSB to HSL ---------------------------------------------------------------------
+
+//  Converts HSB/HSV color values to HSL.
+//  use cases:
+//    – background-color: hsb( 0, 0, 48 );
+//    – background-color: hsb( 20, 20, 20, 0.5 );
+
+    @function hsb( $h, $s, $b, $a:1 ) {
+
+        @if $b == 0 {
+            @return hsla( 0, 0, 0, $a );
+        }
+        @else {
+            $hsl--l: ( $b / 2 ) * ( 2 - ( $s / 100 ) );
+            $hsl--s: ( $b * $s ) / if( $hsl--l < 50, $hsl--l * 2, 200 - $hsl--l * 2 );
+            @return hsla($h, $hsl--s, $hsl--l, $a);
+        }
+
+    }
+
+
+//  Color mixing -------------------------------------------------------------------
+
+//  Using the built in sass function mix() is much preferable
+//  to lighten() and darken(). The shade and tint mixins will
+//  make it slightly easier to use mix().
+//
+//  See here: http://codepen.io/KatieK2/full/tejhz/
+//  nuff said.
+
+    // Darken color
+    @function shade( $color, $percentage ) {
+        @return mix( black, $color, $percentage );
+    }
+
+    // Lighten color
+    @function tint( $color, $percentage ) {
+        @return mix( white, $color, $percentage );
+    }

@@ -1,0 +1,149 @@
+//  --------------------------------------------------------------------------------
+//  _mixin.scss
+//  --------------------------------------------------------------------------------
+
+//  Mixins
+//   ├─ Sizing
+//   ├─ Positioning
+//   ├─ Responsive breakpoints
+//   └─ Input placeholder
+
+
+
+
+
+//  --------------------------------------------------------------------------------
+//  Mixins
+//  --------------------------------------------------------------------------------
+
+//  Sizing -------------------------------------------------------------------------
+
+//  A nicer way to define the width and height of a element.
+//  Set the width and height in any valid unit. Alternatively
+//  pass in only one parameter to set both width and height
+//  to that value.
+//  use cases:
+//    – @include size( 100%, 100px );
+//    - @include size( 35px );
+
+    @mixin size( $width, $height:$width ) {
+        height:                 $height;
+        width:                  $width;
+    }
+
+
+//  Positioning --------------------------------------------------------------------
+
+//  Compact solution to setting a position (absolute, fixed or
+//  relative) and its offset/s.
+//  use cases:
+//    – @include absolute( top left bottom right );
+//    – @inlcude fixed( bottom 2px right 50% );
+//    – @include relative( left -5px );
+//    – @include relative( left initial right auto top inherit );
+//
+//  This is Hugo Giraudel's implementation, more infomation here:
+//  http://hugogiraudel.com/2014/05/19/new-offsets-sass-mixin/
+
+    @mixin absolute( $args:() ) {
+        @include position( absolute, $args );
+    }
+
+    @mixin fixed( $args:() ) {
+        @include position( fixed, $args );
+    }
+
+    @mixin relative( $args:() ) {
+        @include position( relative, $args );
+    }
+
+    @function is-valid-length( $value ) {
+        @return ( type-of( $value ) == "number" and not unitless( $value ) )
+            or  ( index( auto initial inherit 0, $value ) != null );
+    }
+
+    @mixin position( $position, $args:() ) {
+        position: $position;
+        $offsets: top right bottom left;
+
+        @each $offset in $offsets {
+            $index: index( $args, $offset );
+
+            @if $index {
+
+                @if $index == length( $args ) {
+                    #{$offset}: 0;
+                }
+
+                @else {
+                    $next: nth( $args, $index + 1 );
+
+                    @if is-valid-length( $next ) {
+                        #{$offset}: $next;
+                    }
+
+                    @else if index( $offsets, $next ) {
+                        #{$offset}: 0;
+                    }
+
+                    @else {
+                        @warn "Invalid value `#{$next}` for offset `#{$offset}`.";
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+//  Responsive breakpoints ---------------------------------------------------------
+
+    @mixin break-point( $medium ) {
+
+        @if $medium == 'condition' {
+            @media only screen and ( max-width: 500px ) {
+                @content;
+            }
+        }
+
+        @if $medium == 'condition' {
+            @media only screen and ( max-width: 1199px ) and ( min-width: 1050px ) {
+                @content;
+            }
+        }
+
+    }
+
+
+//  Input placeholder --------------------------------------------------------------
+
+//  Note that rules are not grouped together as the
+//  browser will discard the ruleset if there is a
+//  selector it does not recognise.
+
+    @mixin placeholder( $color : $text-color--placeholder ) {
+
+        // Webkit, Blink, Edge
+        &::-webkit-input-placeholder {
+            color:              $color;
+        }
+
+        // Mozilla Firefox (4-18)
+        &:-moz-placeholder {
+            color:              $color;
+        }
+
+        // Mozilla Firefox (19+)
+        &::-moz-placeholder {
+            color:              $color;
+        }
+
+        // Internet Explorer (10-11)
+        :-ms-input-placeholder {
+            color:              $color;
+        }
+
+    }

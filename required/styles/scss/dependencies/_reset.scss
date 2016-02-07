@@ -1,0 +1,73 @@
+//  --------------------------------------------------------------------------------
+//  _reset.scss
+//  --------------------------------------------------------------------------------
+
+
+
+
+
+//  --------------------------------------------------------------------------------
+//  Reset and normalise styles
+//  --------------------------------------------------------------------------------
+
+    html, body, div, span, object, iframe,
+    header, footer, aside, section, article,
+    address, legend, code, pre,
+    ul, ol, li, dl, dt, dd,
+    h1, h2, h3, h4, h5, h6, p, a, i,
+    strong, em, sub, sup,
+    fieldset, radiogroup, figcaption, figure,
+    form, input, select, textarea, label, button,
+    table, thead, tfoot, tbody, tr, th, td,
+    img, audio, video {
+        background-color:       transparent;
+        border:                 0;
+        box-sizing:             border-box;
+        margin:                 0;
+        outline:                0;
+        padding:                0;
+    }
+
+    // Making sure that older browsers
+    // display html5 elements correctly.
+    article, aside, details, fieldset, figcaption,
+    figure, footer, header, hgroup, menu,
+    nav, radiogroup, section {
+        display:                block;
+    }
+
+    table {
+        border-collapse:        collapse;
+        border-spacing:         0;
+    }
+
+    img {
+        display:                block;
+    }
+
+
+//  Interactive elements -----------------------------------------------------------
+
+    ::selection {
+        background-color:       $orange;
+        color:                  $black;
+    }
+
+    a,
+    button {
+        cursor:                 pointer;
+    }
+
+
+//  Layout -------------------------------------------------------------------------
+
+    html {
+        @include scrollbar;
+        max-height:             100%;
+        max-width:              100%;
+    }
+
+    body {
+        background-color:       $white-smoke--light;
+        padding:                $span--2 $span--1;
+    }

@@ -1,0 +1,52 @@
+//  --------------------------------------------------------------------------------
+//  _image.scss
+//  --------------------------------------------------------------------------------
+
+//  Image
+//   ├─ /
+//   └─ /
+
+
+
+
+
+//  --------------------------------------------------------------------------------
+//  Image
+//  --------------------------------------------------------------------------------
+
+    .image {
+        @include scrollbar;
+        background-color:       $white-smoke;
+        border:                 1px solid $white-smoke;
+        // Force whatever element this class may be
+        // in to always display as a block.
+        display:                block;
+        // Using 75% bottom padding will lock the
+        // image container to a 4:3 ratio.
+        padding-bottom:         75%;
+        overflow:               hidden;
+        position:               relative;
+        width:                  100%;
+
+        &:hover {
+            // Showing a vertical scrollbar if necessary.
+            overflow-x:             hidden;
+            overflow-y:             auto;
+            // Using a transform that doesn't actually change
+            // the element but it will promote the element to
+            // a composite layer. This is used fix to the issue
+            // in blick/webkit that the scrollbar leaves
+            // behind a undesirable area upon mouse out.
+            transform:              scale( 1 );
+        }
+
+    }
+
+    // Image inside the image container
+    .image > img {
+        @include absolute( top left bottom right );
+        display:                block;
+        margin:                 auto;
+        max-width:              100%;
+        pointer-events:         none;
+    }

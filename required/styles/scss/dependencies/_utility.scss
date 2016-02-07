@@ -1,0 +1,113 @@
+//  --------------------------------------------------------------------------------
+//  _utility.scss
+//  --------------------------------------------------------------------------------
+
+//  About this file
+//  Floats
+//   └─ Clearfix
+//  Text
+//   ├─ Bold
+//   └─ Italic
+//  Custom scrollbar
+
+
+
+
+
+//  --------------------------------------------------------------------------------
+//  About this file
+//  --------------------------------------------------------------------------------
+
+//  This file is laid out so that the rule set/group is contained
+//  in a mixin. This mixin will then be used to create a class
+//  and placeholder class
+
+//  Ways to incorporate a utility class into the project are:
+//  - @include class;
+//  - @extend %class
+//  - Directly using the class on a html element
+
+
+
+
+
+//  --------------------------------------------------------------------------------
+//  Floats
+//  --------------------------------------------------------------------------------
+
+//  Clearfix -----------------------------------------------------------------------
+
+    @mixin clearfix {
+
+        &::after {
+            content:                '';
+            display:                table;
+            clear:                  both;
+        }
+
+    }
+
+    .clearfix,
+    %clearfix {
+        @include clearfix;
+    }
+
+
+
+
+
+//  --------------------------------------------------------------------------------
+//  Text
+//  --------------------------------------------------------------------------------
+
+//  Bold ---------------------------------------------------------------------------
+
+    @mixin text--bold {
+        // font-weight:            $font-weight--bold !important;
+    }
+
+    .text--bold,
+    %text--bold {
+        @include text--bold;
+    }
+
+
+//  Italic ---------------------------------------------------------------------------
+
+    @mixin text--italic {
+        font-style:             italic !important;
+    }
+
+    .text--italic,
+    %text--italic {
+        @include text--italic;
+    }
+
+
+
+
+
+//  --------------------------------------------------------------------------------
+//  Custom scrollbar
+//  --------------------------------------------------------------------------------
+
+//  Currently only webkit browsers have the option
+//  to customize the scrollbar styles with css
+
+    @mixin scrollbar {
+
+        &::-webkit-scrollbar {
+            @include size( 5px );
+            background-color:       transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color:       $grey;
+        }
+
+    }
+
+    .scrollbar,
+    %scrollbar {
+        @include scrollbar;
+    }

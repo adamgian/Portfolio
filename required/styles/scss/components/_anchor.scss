@@ -1,0 +1,58 @@
+//  --------------------------------------------------------------------------------
+//  _anchor.scss
+//  --------------------------------------------------------------------------------
+
+
+
+
+
+//  --------------------------------------------------------------------------------
+//  Anchor
+//  --------------------------------------------------------------------------------
+
+    a {
+        color:                  $orange;
+        position:               relative;
+        text-decoration:        none;
+        transition:             color 0.2s ease-in-out;
+        z-index:                1;
+
+        &.is-active,
+        &:hover {
+            color:                  white;
+            transition-delay:       0.1s;
+        }
+
+    }
+
+    // Background block.
+    // Yes, this can done by simply setting a background color
+    // and padding directly onto the anchor element. However
+    // this pushes elements around it apart.
+    a {
+
+        &::after {
+            @include absolute( top -5px left -5px );
+            @include size( 100% );
+            background-color:       $orange;
+            content:                '';
+            display:                block;
+            opacity:                0;
+            padding:                5px;
+            transition:             opacity 0.2s ease-in-out;
+            z-index:                -1;
+        }
+
+        &.is-active::after,
+        &:hover::after {
+            opacity:                1;
+            transition-delay:       0.1s;
+        }
+
+    }
+
+    // Place margin between adjacent anchors
+    // (ie. anchors in nav).
+    a + a {
+        margin-left:            10px;
+    }
