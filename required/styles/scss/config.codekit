@@ -170,10 +170,10 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/main.scss",
-		"outputAbbreviatedPath": "\/Users\/adamg\/Desktop\/REFACTOR\/required\/styles\/main.css",
+		"outputAbbreviatedPath": "\/Users\/adamg\/Desktop\/portfolio\/required\/styles\/main.css",
 		"outputPathIsOutsideProject": 1,
 		"outputPathIsSetByUser": 1,
-		"outputStyle": 0,
+		"outputStyle": 3,
 		"shouldRunAutoprefixer": 1,
 		"shouldRunBless": 0,
 		"useLibsass": 0
