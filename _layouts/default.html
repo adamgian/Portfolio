@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>
+            {% if page.title %}
+                {{ page.title }} –
+            {% endif %}
+            Adam Gian
+        </title>
+        <meta charset="utf-8">
+        <link href="/required/styles/main.css" rel="stylesheet">
+        <link href="/favicon.png" rel="icon" type="image/png">
+    </head>
+
+    <body>
+
+        <aside class="sidebar">
+            <nav>
+                <h1>Title</h1>
+                <a href="/projects">Projects</a>
+                <a href="/about">About</a>
+            </nav>
+        </aside>
+
+        <div class="content">
+            {{ content }}
+        </div>
+
+    </body>
+
+</html>
