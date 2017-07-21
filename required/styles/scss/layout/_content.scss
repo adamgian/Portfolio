@@ -14,6 +14,17 @@
 //  Content
 //  --------------------------------------------------------------------------------
 
+    .content {
+        @include breakpoint( m ) {
+            margin-right:           $baseline * 8;
+        }
+
+        @include breakpoint( l ) {
+            margin-right:           $baseline * 10;
+        }
+    }
+
+
 //  Sections -----------------------------------------------------------------------
 
     .content__section {
@@ -21,7 +32,7 @@
     }
 
     .content__section + .content__section {
-        margin-top:             $span--2;
+        margin-top:             $baseline * 2;
     }
 
 
@@ -29,9 +40,19 @@
 
     .column {
         display:                block;
-        // float:                  left;
+        float:                  left;
+
+        @include breakpoint( xs ) {
+            padding-right:          $baseline * 2;
+        }
+
+        @include breakpoint( s ) {
+            width:                  50%;
+        }
     }
 
     .column + .column {
-        margin-top:             $span--1;
+        @include breakpoint( 0, s ) {
+            margin-top:             $baseline;
+        }
     }

@@ -24,27 +24,21 @@
         color:                  inherit;
         font-family:            inherit;
         font-size:              inherit;
+        font-style:             inherit;
         font-weight:            inherit;
         line-height:            inherit;
         // Fix sloppy rendering of font and icons
-        // on both chrome and firefox on mac osx.
+        // on both chrome and firefox on Mac OSX.
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing:grayscale;
     }
 
-    body {
-        color:                  $black;
+    html {
+        color:                  $color--scorpion;
         font-family:            $font-family;
         font-size:              $font-size--body;
-        font-weight:            300;
-        line-height:            1.7em;
-    }
-
-    // Yeah yeah, bad practice to reset something to
-    // unset and override later but ul will not be
-    // used with bullets on any pages.
-    ul {
-        list-style:             none;
+        font-weight:            normal;
+        line-height:            $baseline;
     }
 
 
@@ -52,6 +46,8 @@
 
     h1 {
         font-size:              $font-size--head;
+        margin-top:             0.875rem;
+        margin-bottom:          0.875rem;
     }
 
     h2 {
@@ -61,8 +57,14 @@
 
 //  Paragraphs ---------------------------------------------------------------------
 
-    p {}
+    p {
+        vertical-align:         bottom;
+    }
 
     p + p {
-        margin-top:             1.6em;
+        margin-top:             $baseline;
+    }
+
+    .p--lead {
+        font-size:              $font-size--subhead;
     }

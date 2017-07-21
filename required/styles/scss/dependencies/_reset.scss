@@ -49,8 +49,9 @@
 //  Interactive elements -----------------------------------------------------------
 
     ::selection {
-        background-color:       $orange;
-        color:                  $black;
+        background-color:       rgba( 0, 0, 0, 0.1 );
+        color:                  $color--scorpion;
+        text-shadow:            none;
     }
 
     a,
@@ -68,6 +69,12 @@
     }
 
     body {
-        background-color:       $white-smoke--light;
-        padding:                $span--2 $span--1;
+        background-color:       $color--alabaster;
+        padding:                ( $baseline * 2 ) ( $baseline );
+
+        // background-size: 100% 14px;
+        // background-image: linear-gradient(to bottom,
+        //                             transparent 0%,
+        //                             transparent 94%,
+        //                             rgba( 0, 0, 200, 0.25 ) 0% );
     }

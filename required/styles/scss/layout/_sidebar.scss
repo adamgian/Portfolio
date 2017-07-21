@@ -13,11 +13,20 @@
 //  --------------------------------------------------------------------------------
 
     .sidebar {
-        margin-bottom:          $span--2;
-        // width:                  240px;
-        // float:                  right;
+        margin-bottom:          $baseline * 2;
+
+        @include breakpoint( m ) {
+            float:                  right;
+            width:                  $baseline * 6;
+        }
+
+        @include breakpoint( l ) {
+            width:                  $baseline * 8;
+        }
     }
 
     .sidebar > nav {
-        // position:               fixed;
+        @include breakpoint( m ) {
+        	position:               fixed;
+        }
     }

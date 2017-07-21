@@ -16,37 +16,49 @@
 
     .image {
         @include scrollbar;
-        background-color:       $white-smoke;
-        border:                 1px solid $white-smoke;
+        background-color:       $color--wild-sand;
+        border:                 1px solid $color--wild-sand;
         // Force whatever element this class may be
         // in to always display as a block.
         display:                block;
-        // Using 75% bottom padding will lock the
-        // image container to a 4:3 ratio.
-        padding-bottom:         75%;
+        // The point of a ~66% bottom padding is that it will
+        // lock the image container to a 3:2 ratio.
+        padding-bottom:         66.66%;
         overflow:               hidden;
         position:               relative;
         width:                  100%;
-
-        &:hover {
-            // Showing a vertical scrollbar if necessary.
-            overflow-x:             hidden;
-            overflow-y:             auto;
-            // Using a transform that doesn't actually change
-            // the element but it will promote the element to
-            // a composite layer. This is used fix to the issue
-            // in blick/webkit that the scrollbar leaves
-            // behind a undesirable area upon mouse out.
-            transform:              scale( 1 );
-        }
-
     }
 
-    // Image inside the image container
+    // Image element within the image container
     .image > img {
         @include absolute( top left bottom right );
         display:                block;
         margin:                 auto;
         max-width:              100%;
         pointer-events:         none;
+    }
+
+    // Prettier broken image
+    img[alt] {
+        &::before,
+        &::after {
+            @include size( 100% );
+            color:                  rgba( 0, 0, 0, 0.2 );
+            padding:                $baseline;
+        }
+
+        &::before {
+            @include absolute( top left );
+            background-color:       $color--wild-sand;
+            content:                '٩◔◔̯۶';
+            font-family:            monospace;
+            font-weight:            bold;
+        }
+
+        &::after {
+            @include absolute( top ( $baseline * 2 ) left );
+            content:                attr( alt );
+            font-size:              0.9em;
+            font-style:             italic;
+        }
     }

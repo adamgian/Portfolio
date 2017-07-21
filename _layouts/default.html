@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
     <head>
-        <title>
-            {% if page.title %}
-                {{ page.title }} –
-            {% endif %}
-            Adam Gian
-        </title>
+        <title>{{ page.title }} — Adam Gian</title>
         <meta charset="utf-8">
-        <link href="/required/styles/main.css" rel="stylesheet">
-        <link href="/favicon.png" rel="icon" type="image/png">
+        <meta charset="viewport" content="initial-scale=1, width=device-width">
+
+        {% include typekit.html %}
+
+        <link rel="stylesheet" href="/required/styles/main.css">
+        <link rel="icon" href="/favicon.png" type="image/png">
     </head>
 
     <body>
 
         <aside class="sidebar">
             <nav>
-                <h1>Title</h1>
-                <a href="/projects">Projects</a>
-                <a href="/about">About</a>
+                <h1>Adam Gian</h1>
+                <a {% if page.url == '/projects' %}class="is-active"{% endif %} href="/projects">Projects</a>
+                <a {% if page.url == '/about' %}class="is-active"{% endif %} href="/about">About</a>
             </nav>
         </aside>
 

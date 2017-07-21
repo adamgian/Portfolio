@@ -2,6 +2,11 @@
 //  _anchor.scss
 //  --------------------------------------------------------------------------------
 
+//  Anchor
+//   ├─ Base
+//   ├─ Active
+//   └─ Hovered/focused
+
 
 
 
@@ -10,31 +15,98 @@
 //  Anchor
 //  --------------------------------------------------------------------------------
 
+//  Base ---------------------------------------------------------------------------
+
     a {
-        color:                  $orange;
+        // Typographic underline
+        // by using background image positioned beneath text.
+        background-image:       linear-gradient(
+                                    to bottom,
+                                    rgba( 242, 111, 24, 1 ) 100%,
+                                    rgba( 0, 0, 0, 0 ) 100%
+                                );
+        background-position:    0 calc( 100% - 0.0625em );
+        background-repeat:      repeat-x;
+        background-size:        2px 0.125em;
+
+        font-style:             normal;
         position:               relative;
         text-decoration:        none;
-        transition:             color 0.2s ease-in-out;
-        z-index:                1;
+        text-shadow:            $color--alabaster -0.1em 0,
+                                $color--alabaster -0.05em 0.03em,
+                                $color--alabaster -0.05em 0,
+                                $color--alabaster -0.05em -0.03em,
+                                $color--alabaster 0 -0.05em,
+                                $color--alabaster 0 0.05em,
+                                $color--alabaster 0.05em 0.03em,
+                                $color--alabaster 0.05em 0,
+                                $color--alabaster 0.05em -0.03em,
+                                $color--alabaster 0.1em 0;
+        transition:             color 0.2s ease-in-out,
+                                text-shadow 2s ease-in-out 0.2s;
+        white-space:            nowrap;
+    }
 
-        &.is-active,
-        &:hover {
-            color:                  white;
-            transition-delay:       0.1s;
+    // Place margin between adjacent anchors
+    // (ie. anchors in nav).
+    a + a {
+        margin-left:            $baseline / 2;
+    }
+
+
+//  Active -------------------------------------------------------------------------
+
+    a.is-active {
+        // Underline
+        background:             none;
+
+        // Strikethrough
+        &::before {
+            border-top:             0.125em solid $color--tango;
+            content:                '';
+            left:                   -3px;
+            position:               absolute;
+            top:                    calc( 100% - 0.5625em );
+            width:                  calc( 100% + 6px );
+            transition:             border 0.2s ease-in-out;
         }
 
+    }
+
+
+//  Hovered/focused ----------------------------------------------------------------
+
+    // Anchor text
+    a {
+        &:focus,
+        &:hover {
+            color:                  white;
+            text-shadow:            none;
+            transition:             color 0.2s ease-in-out 0.1s,
+                                    text-shadow 0s linear 0.1s;
+        }
+    }
+
+    // Strikethrough
+    a.is-active {
+        &:focus::before,
+        &:hover::before {
+            border-color:           $color--alabaster;
+            transition-delay:       0.1s;
+        }
     }
 
     // Background block.
     // Yes, this can done by simply setting a background color
     // and padding directly onto the anchor element. However
-    // this pushes elements around it apart.
+    // this adds margins around the anchor and using a pseudo
+    // element provides more flexability.
     a {
 
         &::after {
-            @include absolute( top -5px left -5px );
+            @include absolute( top -6px left -5px );
             @include size( 100% );
-            background-color:       $orange;
+            background-color:       $color--tango;
             content:                '';
             display:                block;
             opacity:                0;
@@ -43,16 +115,10 @@
             z-index:                -1;
         }
 
-        &.is-active::after,
+        &:focus::after,
         &:hover::after {
             opacity:                1;
             transition-delay:       0.1s;
         }
 
-    }
-
-    // Place margin between adjacent anchors
-    // (ie. anchors in nav).
-    a + a {
-        margin-left:            10px;
     }

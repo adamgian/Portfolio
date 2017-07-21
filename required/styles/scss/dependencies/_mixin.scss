@@ -101,49 +101,36 @@
 
 //  Responsive breakpoints ---------------------------------------------------------
 
-    @mixin break-point( $medium ) {
+    @mixin breakpoint( $start, $end:null ) {
 
-        @if $medium == 'condition' {
-            @media only screen and ( max-width: 500px ) {
+        $breakpoints: (
+            xs: $breakpoint--xs,
+            s: $breakpoint--s,
+            m: $breakpoint--m,
+            l: $breakpoint--l,
+            xl: $breakpoint--xl
+        );
+
+        // Run checks to see if arguments are one of the keywords
+        // (extra-small, small, medium, large and extra-large)
+        @if map-has-key( $breakpoints, $start ) {
+            $start: map-get( $breakpoints, $start );
+        }
+
+        @if $end != null and map-has-key( $breakpoints, $end ) {
+            $end: map-get( $breakpoints, $end );
+        }
+
+        //
+        @if $start and $end == null {
+            @media ( min-width: $start ) {
                 @content;
             }
         }
-
-        @if $medium == 'condition' {
-            @media only screen and ( max-width: 1199px ) and ( min-width: 1050px ) {
+        @else if $start and $end {
+            @media ( min-width: $start ) and ( max-width: $end ) {
                 @content;
             }
-        }
-
-    }
-
-
-//  Input placeholder --------------------------------------------------------------
-
-//  Note that rules are not grouped together as the
-//  browser will discard the ruleset if there is a
-//  selector it does not recognise.
-
-    @mixin placeholder( $color : $text-color--placeholder ) {
-
-        // Webkit, Blink, Edge
-        &::-webkit-input-placeholder {
-            color:              $color;
-        }
-
-        // Mozilla Firefox (4-18)
-        &:-moz-placeholder {
-            color:              $color;
-        }
-
-        // Mozilla Firefox (19+)
-        &::-moz-placeholder {
-            color:              $color;
-        }
-
-        // Internet Explorer (10-11)
-        :-ms-input-placeholder {
-            color:              $color;
         }
 
     }

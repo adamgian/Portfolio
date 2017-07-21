@@ -97,12 +97,13 @@
     @mixin scrollbar {
 
         &::-webkit-scrollbar {
-            @include size( 5px );
             background-color:       transparent;
+            width:                  10px;
         }
 
         &::-webkit-scrollbar-thumb {
-            background-color:       $grey;
+            background-color:       $color--alto;
+            box-shadow:             inset 5px 0 0 0 $color--alabaster;
         }
 
     }
