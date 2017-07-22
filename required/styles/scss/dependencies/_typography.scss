@@ -36,9 +36,35 @@
     html {
         color:                  $color--scorpion;
         font-family:            $font-family;
+        // Fallback if fluid size is not applied.
         font-size:              $font-size--body;
         font-weight:            normal;
         line-height:            $baseline;
+        transition:             font-size 0.2s ease-in-out;
+
+        @include breakpoint( 0, s ) {
+            font-size:              calc( #{$font-size--body - 2} + 2 * (( 100vw - #{$breakpoint--min} ) / ( #{strip-unit( $breakpoint--s )} - #{strip-unit( $breakpoint--min )} )) );
+        }
+
+        @include breakpoint( s, m ) {
+            font-size:              calc( #{$font-size--body - 1} + 1 * (( 100vw - #{$breakpoint--s} ) / ( #{strip-unit( $breakpoint--m )} - #{strip-unit( $breakpoint--s )} )) );
+        }
+
+        @include breakpoint( m ) {
+            font-size:              calc( #{$font-size--body - 1} + 1 * (( 100vw - #{$breakpoint--m} ) / ( #{strip-unit( $breakpoint--l )} - #{strip-unit( $breakpoint--m )} )) );
+        }
+
+        // Stop font size from shrinking once under
+        // the minimum breakpoint size.
+        @include breakpoint( 0, $breakpoint--min ) {
+            font-size:              $font-size--body - 2px;
+        }
+
+        // Stop font size from increasing once over
+        // the large breakpoint.
+        @include breakpoint( l ) {
+            font-size:              $font-size--body;
+        }
     }
 
 

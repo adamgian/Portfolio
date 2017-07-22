@@ -65,16 +65,11 @@
     html {
         @include scrollbar;
         max-height:             100%;
-        max-width:              100%;
+        max-width:              $breakpoint--max;
+        min-width:              $breakpoint--min;
     }
 
     body {
         background-color:       $color--alabaster;
         padding:                ( $baseline * 2 ) ( $baseline );
-
-        // background-size: 100% 14px;
-        // background-image: linear-gradient(to bottom,
-        //                             transparent 0%,
-        //                             transparent 94%,
-        //                             rgba( 0, 0, 200, 0.25 ) 0% );
     }

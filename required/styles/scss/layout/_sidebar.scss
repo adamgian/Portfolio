@@ -28,5 +28,6 @@
     .sidebar > nav {
         @include breakpoint( m ) {
         	position:               fixed;
+            width:                  100%;
         }
     }

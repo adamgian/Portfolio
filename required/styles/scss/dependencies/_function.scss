@@ -53,3 +53,13 @@
     @function tint( $color, $percentage ) {
         @return mix( white, $color, $percentage );
     }
+
+
+//  Strip unit ---------------------------------------------------------------------
+
+//  Returns a value without any unit.
+//  (eg. 42px becomes just 42)
+
+    @function strip-unit( $value ) {
+        @return $value / ( $value * 0 + 1 );
+    }
