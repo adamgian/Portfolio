@@ -21,27 +21,33 @@
         // Typographic underline
         // by using background image positioned beneath text.
         background-image:       linear-gradient(
-                                    to bottom,
-                                    rgba( 242, 111, 24, 1 ) 100%,
-                                    rgba( 0, 0, 0, 0 ) 100%
+                                    to top,
+                                    rgba( 242, 111, 24, 1 ) 0.125em,
+                                    rgba( 0, 0, 0, 0 ) 0.125em
                                 );
-        background-position:    0 calc( 100% - 0.0625em );
-        background-repeat:      repeat-x;
-        background-size:        2px 0.125em;
 
         font-style:             normal;
         position:               relative;
         text-decoration:        none;
-        text-shadow:            $color--alabaster -0.1em 0,
-                                $color--alabaster -0.05em 0.03em,
-                                $color--alabaster -0.05em 0,
-                                $color--alabaster -0.05em -0.03em,
-                                $color--alabaster 0 -0.05em,
-                                $color--alabaster 0 0.05em,
-                                $color--alabaster 0.05em 0.03em,
-                                $color--alabaster 0.05em 0,
-                                $color--alabaster 0.05em -0.03em,
-                                $color--alabaster 0.1em 0;
+        text-shadow:            $color--alabaster 0.12em 0.06em,
+                                $color--alabaster 0.12em 0.03em,
+                                $color--alabaster 0.12em 0,
+                                $color--alabaster 0.12em -0.03em,
+                                $color--alabaster 0.12em -0.06em,
+
+                                $color--alabaster 0.09em 0.06em,
+                                $color--alabaster 0.06em 0.06em,
+                                $color--alabaster 0.03em 0.06em,
+                                $color--alabaster 0 0.06em,
+                                $color--alabaster -0.03em 0.06em,
+                                $color--alabaster -0.06em 0.06em,
+                                $color--alabaster -0.09em 0.06em,
+
+                                $color--alabaster -0.12em 0.06em,
+                                $color--alabaster -0.12em 0.03em,
+                                $color--alabaster -0.12em 0,
+                                $color--alabaster -0.12em -0.03em,
+                                $color--alabaster -0.12em -0.06em;
         transition:             color 0.2s ease-in-out,
                                 text-shadow 2s ease-in-out 0.2s;
         white-space:            nowrap;
@@ -59,6 +65,7 @@
     a.is-active {
         // Underline
         background:             none;
+        text-shadow:            none;
 
         // Strikethrough
         &::before {

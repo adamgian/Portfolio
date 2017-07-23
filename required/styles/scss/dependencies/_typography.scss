@@ -43,11 +43,11 @@
         transition:             font-size 0.2s ease-in-out;
 
         @include breakpoint( 0, s ) {
-            font-size:              calc( #{$font-size--body - 2} + 2 * (( 100vw - #{$breakpoint--min} ) / ( #{strip-unit( $breakpoint--s )} - #{strip-unit( $breakpoint--min )} )) );
+            font-size:              calc( #{$font-size--body - 2} + 2 * (( 100vw - #{$breakpoint--min} ) / ( #{strip-unit( $breakpoint--s ) - 20} - #{strip-unit( $breakpoint--min )} )) );
         }
 
         @include breakpoint( s, m ) {
-            font-size:              calc( #{$font-size--body - 1} + 1 * (( 100vw - #{$breakpoint--s} ) / ( #{strip-unit( $breakpoint--m )} - #{strip-unit( $breakpoint--s )} )) );
+            font-size:              calc( #{$font-size--body - 1} + 1 * (( 100vw - #{$breakpoint--s} ) / ( #{strip-unit( $breakpoint--m ) - 20} - #{strip-unit( $breakpoint--s )} )) );
         }
 
         @include breakpoint( m ) {
