@@ -1,3 +1,5 @@
+url: 'http://adamgian.me'
+
 exclude:
   - README.md
   - required/styles/scss/
