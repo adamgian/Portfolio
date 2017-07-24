@@ -51,6 +51,10 @@
         transition:             color 0.2s ease-in-out,
                                 text-shadow 2s ease-in-out 0.2s;
         white-space:            nowrap;
+        // Note: Required to set a z-index to create a new
+        // stacking context. ie. the background pseudo element
+        // (which is -1) will not obscure the anchor text.
+        z-index:                0;
     }
 
     // Place margin between adjacent anchors
