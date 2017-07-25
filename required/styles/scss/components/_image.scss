@@ -50,14 +50,14 @@
         &::before {
             @include absolute( top left );
             background-color:       $color--wild-sand;
-            content:                '٩◔◔̯۶';
+            content:                '404';
             font-family:            monospace;
             font-weight:            bold;
         }
 
         &::after {
             @include absolute( top ( $baseline * 2 ) left );
-            content:                attr( alt );
+            content:                '“' attr( alt ) '”';
             font-size:              0.9em;
             font-style:             italic;
         }
