@@ -1,5 +1,7 @@
-_site/
+# Directories
+dist/
 node_modules/
-assets/javascript/dist
-assets/styles/main.css
-assets/styles/scss/.sass-cache/
+
+# Files
+src/_includes/css/main.min.css
+src/assets/javascript/bundle.min.js

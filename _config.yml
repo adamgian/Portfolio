@@ -1,6 +1,0 @@
-url: 'https://adamgian.me'
-
-exclude:
-  - README.md
-  - assets/styles/scss/
-  - node_modules
