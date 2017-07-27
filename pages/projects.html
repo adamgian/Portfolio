@@ -2,22 +2,37 @@
 layout: default
 permalink: /projects
 title: Projects
+
+projects:
+    - name: Adam Gian
+      path: /project/adamgian
+      thumbnail: test.jpg
+    - name: Caboolture Country Markets
+      path: /project/caboolturecountrymarkets
+      thumbnail: test.jpg
+    - name: Adam Gian
+      path: /project/adamgian
+      thumbnail: test.jpg
 ---
 
 
-<!--
-<div class="content__section">
-    <div class="column">
-        <a href="/project/caboolturecountrymarkets">Caboolture Country Markets</a>
-        <div class="image">
-            <img src="">
+{% for project in page.projects %}
+
+    {% assign mod = forloop.index | modulo: 2 %}
+
+    {% if mod == 1 %}
+    <div class="content__section">
+    {% endif %}
+
+        <div class="column">
+            <a href="{{ project.path }}">{{ project.name }}</a>
+            <div class="image">
+                <img src="{{ project.thumbnail }}" alt="{{ project.name }}">
+            </div>
         </div>
+
+    {% if mod == 0 or forloop.last %}
     </div>
-    <div class="column">
-        <a href="/project/felormohajer">Felor Mohajer</a>
-        <div class="image">
-            <img src="">
-        </div>
-    </div>
-</div>
--->
+    {% endif %}
+
+{% endfor %}

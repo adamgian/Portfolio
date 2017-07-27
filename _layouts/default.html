@@ -20,7 +20,7 @@ layout: compress
         <aside class="sidebar">
             <nav>
                 <h1>Adam Gian</h1>
-                <a {% if page.url == '/projects' %}class="is-active"{% endif %} href="/projects">Projects</a>
+                <a {% if page.url contains '/project' %}class="is-active"{% endif %} href="/projects">Projects</a>
                 <a {% if page.url == '/about' %}class="is-active"{% endif %} href="/about">About</a>
             </nav>
         </aside>
