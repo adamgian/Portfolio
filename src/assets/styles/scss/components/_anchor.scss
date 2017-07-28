@@ -17,7 +17,7 @@
 
 //  Base ---------------------------------------------------------------------------
 
-    a {
+    .anchor {
         // Typographic underline
         // by using background image positioned beneath text.
         background-image:       linear-gradient(
@@ -59,14 +59,14 @@
 
     // Place margin between adjacent anchors
     // (ie. anchors in nav).
-    a + a {
+    .anchor + .anchor {
         margin-left:            $baseline / 2;
     }
 
 
 //  Active -------------------------------------------------------------------------
 
-    a.is-active {
+    .anchor.is-active {
         // Underline
         background:             none;
         text-shadow:            none;
@@ -88,7 +88,7 @@
 //  Hovered/focused ----------------------------------------------------------------
 
     // Anchor text
-    a {
+    .anchor {
         &:focus,
         &:hover {
             color:                  white;
@@ -99,7 +99,7 @@
     }
 
     // Strikethrough
-    a.is-active {
+    .anchor.is-active {
         &:focus::before,
         &:hover::before {
             border-color:           $color--alabaster;
@@ -112,7 +112,7 @@
     // and padding directly onto the anchor element. However
     // this adds margins around the anchor and using a pseudo
     // element provides more flexability.
-    a {
+    .anchor {
 
         &::after {
             @include absolute( top -6px left -5px );
