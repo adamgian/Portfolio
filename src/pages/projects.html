@@ -2,21 +2,12 @@
 layout: default
 permalink: /projects
 title: Projects
-
-projects:
-    - name: Gravitas
-      path: /project/gravitas
-      thumbnail: test.jpg
-    - name: Caboolture Country Markets
-      path: /project/caboolturecountrymarkets
-      thumbnail: test.jpg
-    - name: Adam Gian
-      path: /project/adamgian
-      thumbnail: test.jpg
 ---
 
 
-{% for project in page.projects %}
+
+
+{% for project in site.data.projects %}
 
     {% assign mod = forloop.index | modulo: 2 %}
 
@@ -25,10 +16,14 @@ projects:
     {% endif %}
 
         <div class="column">
-            <a href="{{ project.path }}">{{ project.name }}</a>
-            <div class="image">
-                <img src="{{ project.thumbnail }}" alt="{{ project.name }}">
-            </div>
+            <p>
+                <a class="anchor" href="{{ project.path }}">{{ project.name }}</a>
+            </p>
+            <a href="{{ project.path }}">
+                <div class="image">
+                    <img src="{{ project.thumbnail }}" alt="{{ project.name }}">
+                </div>
+            </a>
         </div>
 
     {% if mod == 0 or forloop.last %}
