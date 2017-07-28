@@ -4,8 +4,8 @@ permalink: /projects
 title: Projects
 
 projects:
-    - name: Adam Gian
-      path: /project/adamgian
+    - name: Gravitas
+      path: /project/gravitas
       thumbnail: test.jpg
     - name: Caboolture Country Markets
       path: /project/caboolturecountrymarkets
@@ -21,7 +21,7 @@ projects:
     {% assign mod = forloop.index | modulo: 2 %}
 
     {% if mod == 1 %}
-    <div class="content__section">
+    <section class="row">
     {% endif %}
 
         <div class="column">
@@ -32,7 +32,7 @@ projects:
         </div>
 
     {% if mod == 0 or forloop.last %}
-    </div>
+    </section>
     {% endif %}
 
 {% endfor %}

@@ -3,7 +3,7 @@
 //  --------------------------------------------------------------------------------
 
 //  Content
-//   ├─ Sections
+//   ├─ Rows
 //   └─ Columns
 
 
@@ -25,14 +25,22 @@
     }
 
 
-//  Sections -----------------------------------------------------------------------
+//  Rows ---------------------------------------------------------------------------
 
-    .content__section {
+    .row,
+    .row--section {
         @include clearfix;
     }
 
-    .content__section + .content__section {
-        margin-top:             $baseline * 2;
+    .row,
+    .row--section {
+        + .row {
+            margin-top:             $baseline;
+        }
+
+        + .row--section {
+            margin-top:             $baseline * 2;
+        }
     }
 
 
@@ -40,13 +48,13 @@
 
     .column {
         display:                block;
-        float:                  left;
 
         @include breakpoint( xs ) {
             padding-right:          $baseline * 2;
         }
 
         @include breakpoint( s ) {
+            float:                  left;
             width:                  50%;
         }
     }

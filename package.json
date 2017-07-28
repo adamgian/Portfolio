@@ -1,12 +1,22 @@
 {
     "name": "portfolio",
-    "version": "0.0.1",
+    "version": "0.0.24",
     "author": {
         "name": "Adam Gian",
         "email": "contact@adamgian.me",
         "url": "adamgian.me"
     },
     "license": "ISC",
+    "private": true,
+    "scripts": {
+        "clean": "rm -rf dist/",
+        "dev": "npm run clean && concurrently 'npm run webpack--dev' 'npm run jekyll--dev'",
+        "build": "npm run clean && npm run webpack && npm run jekyll",
+        "jekyll": "cross-env JEKYLL_ENV=production jekyll build --config config/_config.yml",
+        "jekyll--dev": "cross-env JEKYLL_ENV=development jekyll serve --config config/_config.yml,config/_config-dev.yml --watch",
+        "webpack": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
+        "webpack--dev": "cross-env NODE_ENV=development webpack --config config/webpack.config.js --watch"
+    },
     "devDependencies": {
         "concurrently": "^3.5.0",
         "cross-env": "^5.0.1",
@@ -18,14 +28,5 @@
         "style-loader": "^0.18.2",
         "uglifyjs-webpack-plugin": "^0.4.6",
         "webpack": "^3.4.0"
-    },
-    "scripts": {
-        "clean": "rm -rf dist/",
-        "dev": "npm run clean && concurrently 'npm run webpack--dev' 'npm run jekyll--dev'",
-        "build": "npm run clean && npm run webpack && npm run jekyll",
-        "jekyll": "cross-env JEKYLL_ENV=production jekyll build --config config/_config.yml",
-        "jekyll--dev": "cross-env JEKYLL_ENV=development jekyll serve --config config/_config.yml --watch -H 0.0.0.0 -P 4000",
-        "webpack": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
-        "webpack--dev": "cross-env NODE_ENV=development webpack --config config/webpack.config.js --watch"
     }
 }
