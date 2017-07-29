@@ -2,19 +2,18 @@
 
 # Ordered listing used to generate the project
 # page and next/prev project suggestions.
-# Note: paths are relative to src/
 
 
 
 
 - name: Gravitas
-  path: project/gravitas
+  permalink: /project/gravitas
   thumbnail: test.jpg
 
 - name: Caboolture Country Markets
-  path: project/caboolturecountrymarkets
+  permalink: /project/caboolturecountrymarkets
   thumbnail: test.jpg
 
 - name: Adam Gian
-  path: project/adamgian
+  permalink: /project/adamgian
   thumbnail: test.jpg
