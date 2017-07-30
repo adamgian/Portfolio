@@ -33,6 +33,10 @@
         font-style:             inherit;
         font-weight:            inherit;
         line-height:            inherit;
+        // Apply kerning
+        text-rendering:         optimizeLegibility;
+        font-feature-settings:  "kern" 1;
+        font-kerning:           normal;
         // Fix sloppy rendering of font and icons
         // on both chrome and firefox on Mac OSX.
         -webkit-font-smoothing: antialiased;

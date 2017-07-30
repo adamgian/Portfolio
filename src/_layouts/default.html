@@ -1,36 +1,14 @@
 ---
-layout: compress
+layout: master
 ---
 
 
 
 
-<!DOCTYPE html>
-<html lang="en">
+<body>
+    {% include sidebar.html %}
 
-    <head>
-        <title>{{ page.title }} — Adam Gian</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, width=device-width">
-        <link rel="canonical" href="{{ site.url }}{{ page.url }}">
-
-        {% include head.html %}
-    </head>
-
-    <body>
-
-        <aside class="sidebar">
-            <nav>
-                <h1>Adam Gian</h1>
-                <a class="anchor {% if page.url contains '/project' %}is-active{% endif %}" href="/projects">Projects</a>
-                <a class="anchor {% if page.url == '/about' %}is-active{% endif %}" href="/about">About</a>
-            </nav>
-        </aside>
-
-        <div class="content">
-            {{ content }}
-        </div>
-
-    </body>
-
-</html>
+    <div class="content">
+        {{ content }}
+    </div>
+</body>
