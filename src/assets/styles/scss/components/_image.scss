@@ -57,7 +57,7 @@
         }
 
         &::after {
-            @include absolute( top ( $baseline * 2 ) left );
+            @include absolute( top $baseline left );
             content:                '“' attr( alt ) '”';
             font-size:              0.9em;
             font-style:             italic;
