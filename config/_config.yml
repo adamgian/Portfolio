@@ -10,7 +10,3 @@ destination: dist/
 exclude:
     - assets/styles/scss/
     - assets/javascript/main.js
-# (src/_layouts/compress.html)
-compress_html:
-    clippings: all
-    comments: all

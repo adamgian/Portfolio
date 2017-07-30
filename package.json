@@ -9,13 +9,14 @@
     "license": "ISC",
     "private": true,
     "scripts": {
-        "clean": "rm -rf dist/",
-        "dev": "npm run clean && concurrently 'npm run webpack--dev' 'npm run jekyll--dev'",
-        "build": "npm run clean && npm run webpack && npm run jekyll",
-        "jekyll": "cross-env JEKYLL_ENV=production jekyll build --config config/_config.yml",
-        "jekyll--dev": "cross-env JEKYLL_ENV=development jekyll serve --config config/_config.yml,config/_config-dev.yml --watch",
-        "webpack": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
-        "webpack--dev": "cross-env NODE_ENV=development webpack --config config/webpack.config.js --watch"
+        "clean": "rimraf dist/",
+        "build": "npm run clean && npm run build:webpack && npm run build:jekyll && npm run build:html",
+        "dev": "npm run clean && concurrently 'npm run serve:webpack' 'npm run serve:jekyll'",
+        "build:html": "html-minifier --input-dir dist/ --output-dir dist/ --remove-comments --collapse-whitespace --minify-js",
+        "build:jekyll": "cross-env JEKYLL_ENV=production jekyll build --config config/_config.yml",
+        "build:webpack": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
+        "serve:jekyll": "cross-env JEKYLL_ENV=development jekyll serve --config config/_config.yml,config/_config-dev.yml --watch",
+        "serve:webpack": "cross-env NODE_ENV=development webpack --config config/webpack.config.js --watch"
     },
     "devDependencies": {
         "concurrently": "^3.5.0",
@@ -23,8 +24,9 @@
         "css-loader": "^0.28.4",
         "csso-webpack-plugin": "^1.0.0-beta.7",
         "extract-text-webpack-plugin": "^3.0.0",
-        "html-minifier-cli": "^0.1.0",
+        "html-minifier": "^3.5.3",
         "node-sass": "^4.5.3",
+        "rimraf": "^2.6.1",
         "sass-loader": "^6.0.6",
         "style-loader": "^0.18.2",
         "uglifyjs-webpack-plugin": "^0.4.6",

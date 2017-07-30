@@ -1,6 +1,2 @@
 ##### Build
 port: 9001
-# (src/_layouts/compress.html)
-compress_html:
-    clippings: []
-    comments: []
