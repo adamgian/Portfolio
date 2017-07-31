@@ -12,7 +12,7 @@
         "clean": "rimraf dist/",
         "build": "npm run clean && npm run build:webpack && npm run build:jekyll && npm run build:html",
         "dev": "npm run clean && concurrently 'npm run serve:webpack' 'npm run serve:jekyll'",
-        "build:html": "html-minifier --input-dir dist/ --output-dir dist/ --file-ext html --remove-comments --collapse-whitespace --minify-js",
+        "build:html": "html-minifier --input-dir 'dist/' --output-dir 'dist/' --file-ext 'html' --remove-comments --collapse-whitespace --minify-js",
         "build:jekyll": "cross-env JEKYLL_ENV=production jekyll build --config config/_config.yml",
         "build:webpack": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
         "serve:jekyll": "cross-env JEKYLL_ENV=development jekyll serve --config config/_config.yml,config/_config-dev.yml --watch",
