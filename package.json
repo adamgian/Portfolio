@@ -10,6 +10,7 @@
     "private": true,
     "scripts": {
         "clean": "rimraf dist/",
+        "start": "npm run dev",
         "build": "npm run clean && npm run build:webpack && npm run build:jekyll && npm run build:html",
         "dev": "npm run clean && concurrently 'npm run serve:webpack' 'npm run serve:jekyll'",
         "build:html": "html-minifier --input-dir 'dist/' --output-dir 'dist/' --file-ext 'html' --remove-comments --collapse-whitespace --minify-js",
@@ -19,6 +20,10 @@
         "serve:webpack": "cross-env NODE_ENV=development webpack --config config/webpack.config.js --watch"
     },
     "devDependencies": {
+        "babel-core": "^6.25.0",
+        "babel-loader": "^7.1.1",
+        "babel-polyfill": "^6.23.0",
+        "babel-preset-es2015": "^6.24.1",
         "concurrently": "^3.5.0",
         "cross-env": "^5.0.1",
         "css-loader": "^0.28.4",

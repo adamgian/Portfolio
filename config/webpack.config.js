@@ -1,6 +1,6 @@
-const CssoWebpackPlugin = require('csso-webpack-plugin').default;
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const CssoWebpackPlugin = require( 'csso-webpack-plugin' ).default;
+const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+const UglifyJSPlugin = require( 'uglifyjs-webpack-plugin' );
 
 
 
@@ -20,12 +20,16 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
+                loader: 'babel-loader',
+                query: {
+                    presets: [ 'es2015' ]
+                }
             },
             {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader']
+                    use: [ 'css-loader', 'sass-loader' ]
                 })
             },
         ]
