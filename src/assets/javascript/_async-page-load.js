@@ -7,9 +7,9 @@ var selector = `a[href^="/"], a[href^="${ siteUrl }"]`;
 
 
 
-// Rather than explictly targeting each internal anchor and
+// Rather than explicitly targeting each internal anchor and
 // worrying about updating the nodelist after each ajax reload.
-body.addEventListener( 'click', ( event ) => {
+body.addEventListener( 'click', event => {
 
     var target;
     var anchors;
@@ -49,8 +49,7 @@ body.addEventListener( 'click', ( event ) => {
         if ( sidebar.contains( target ) )
             target.classList.add( 'is-active' );
 
-        history.pushState( { url: target.href }, null, target.href );
-        getContent();
+        History.pushState( {}, null, target.href );
 
     } );
 
@@ -59,9 +58,12 @@ body.addEventListener( 'click', ( event ) => {
 
 
 
-function getContent() {
+History.Adapter.bind( window, 'statechange', event => {
+
     var xhr = new XMLHttpRequest();
-    xhr.open( 'GET', history.state.url, true );
+    var State = History.getState();
+
+    xhr.open( 'GET', State.url, true );
     xhr.setRequestHeader( 'X-Requested-With', 'XMLHttpRequest' );
     xhr.responseType = 'document';
     xhr.send();
@@ -75,4 +77,4 @@ function getContent() {
         content.innerHTML = res.querySelector( '.content' ).innerHTML;
     };
 
-}
+} );
