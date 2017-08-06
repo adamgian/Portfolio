@@ -11,7 +11,7 @@ permalink: /sitemap.xml
     <!-- Home (about) -->
     <url>
         <loc>{{ site.url }}</loc>
-        <lastmod></lastmod>
+        <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -19,7 +19,7 @@ permalink: /sitemap.xml
     <!-- Projects -->
     <url>
         <loc>{{ site.url }}/projects</loc>
-        <lastmod></lastmod>
+        <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
