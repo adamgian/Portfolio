@@ -8,7 +8,6 @@
 //  Text
 //   ├─ Bold
 //   └─ Italic
-//  Custom scrollbar
 
 
 
@@ -81,33 +80,4 @@
     .text--italic,
     %text--italic {
         @include text--italic;
-    }
-
-
-
-
-
-//  --------------------------------------------------------------------------------
-//  Custom scrollbar
-//  --------------------------------------------------------------------------------
-
-//  Currently only webkit browsers have the option
-//  to customize the scrollbar styles with css
-
-    @mixin scrollbar {
-
-        &::-webkit-scrollbar {
-            @include size( 5px );
-            background-color:       transparent;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color:       $color--alto;
-        }
-
-    }
-
-    .scrollbar,
-    %scrollbar {
-        @include scrollbar;
     }

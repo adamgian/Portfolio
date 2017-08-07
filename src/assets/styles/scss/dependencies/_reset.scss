@@ -63,8 +63,6 @@
 //  Layout -------------------------------------------------------------------------
 
     html {
-        @include scrollbar;
-        max-height:             100%;
         max-width:              $breakpoint--max;
         min-width:              $breakpoint--min;
     }

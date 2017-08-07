@@ -15,9 +15,7 @@
 //  --------------------------------------------------------------------------------
 
     .image {
-        @include scrollbar;
         background-color:       $color--wild-sand;
-        border:                 1px solid $color--wild-sand;
         // Force whatever element this class may be
         // in to always display as a block.
         display:                block;
