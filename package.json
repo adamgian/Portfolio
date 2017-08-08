@@ -35,8 +35,5 @@
         "style-loader": "^0.18.2",
         "uglifyjs-webpack-plugin": "^0.4.6",
         "webpack": "^3.4.1"
-    },
-    "dependencies": {
-        "historyjs": "^1.8.0-b2"
     }
 }

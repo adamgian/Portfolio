@@ -1,15 +1,13 @@
 var body = document.querySelector( 'body' );
 var content = document.querySelector( '.content' );
 var sidebar = document.querySelector( '.sidebar' );
-var siteUrl = `https://${ document.location.hostname || document.location.host }`;
-var selector = `a[href^="/"], a[href^="${ siteUrl }"]`;
+
+var hasFinishedAnimating = false;
 
 
 
 
-// Rather than explicitly targeting each internal anchor and
-// worrying about updating the nodelist after each ajax reload.
-body.addEventListener( 'click', event => {
+if ( history.pushState ) body.addEventListener( 'click', event => {
 
     var target;
     var anchors;
@@ -27,7 +25,8 @@ body.addEventListener( 'click', event => {
     // element that was clicked is not even an anchor.
     if ( !target ) return;
 
-    anchors = document.querySelectorAll( selector );
+    // Get all internal anchors on page.
+    anchors = document.querySelectorAll( `a[href^="/"]` );
 
 
     // Going through each anchor that has an internal link.
@@ -38,19 +37,20 @@ body.addEventListener( 'click', event => {
 
         event.preventDefault();
         target.blur();
+        content.classList.add( 'is-loading' );
 
         // Need to remove any current 'is-active' class from sidebar.
-        var sidebarAnchors = document.querySelectorAll( '.sidebar .is-active' );
-        Array.from( sidebarAnchors ).forEach( sidebarAnchor => {
+        var sidebarAnchor = document.querySelector( '.sidebar .is-active' );
+        if ( sidebarAnchor )
             sidebarAnchor.classList.remove( 'is-active' );
-        } );
 
-        // Add 'is-active' class to sidebar anchor if it was clicked.
+        // Add 'is-active' class to sidebar anchor that was clicked
+        // (if it was clicked).
         if ( sidebar.contains( target ) )
             target.classList.add( 'is-active' );
 
-        History.pushState( {}, null, target.href );
-
+        history.pushState( {}, null, target.href );
+        fetchPage();
     } );
 
 } );
@@ -58,23 +58,48 @@ body.addEventListener( 'click', event => {
 
 
 
-History.Adapter.bind( window, 'statechange', event => {
+window.addEventListener( 'popstate', event => {
+    fetchPage();
+} );
+
+
+
+
+function fetchPage() {
 
     var xhr = new XMLHttpRequest();
-    var State = History.getState();
+    var href = window.location.href;
+    var data = {};
+    hasFinishedAnimating = false;
 
-    xhr.open( 'GET', State.url, true );
-    xhr.setRequestHeader( 'X-Requested-With', 'XMLHttpRequest' );
+    xhr.open( 'GET', href, true );
     xhr.responseType = 'document';
     xhr.send();
 
-    xhr.onload = function( event ) {
-        var res = event.target.responseXML;
+    setTimeout( () => {
+        hasFinishedAnimating = true;
+        if ( data.title && data.content )
+            updateContent( data );
+    }, 300 );
 
-        // Update page title
-        document.title = event.target.response.title;
-        // Update page content
-        content.innerHTML = res.querySelector( '.content' ).innerHTML;
+    xhr.onload = function( event ) {
+        data.title = event.target.response.title;
+        data.content = event.target.responseXML.querySelector( '.content' ).innerHTML;
+        if ( hasFinishedAnimating )
+            updateContent( data );
     };
 
-} );
+}
+
+
+
+
+function updateContent( data ) {
+    // Update title
+    document.title = data.title;
+    // Update content
+    content.innerHTML = data.content;
+    // Finalise page loading
+    window.scrollTo( 0, 0 );
+    content.classList.remove( 'is-loading' );
+}

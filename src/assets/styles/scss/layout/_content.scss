@@ -15,6 +15,16 @@
 //  --------------------------------------------------------------------------------
 
     .content {
+        opacity:                1;
+        transition:             opacity 0.25s ease-out;
+        transition-delay:       0.1s;
+
+        &.is-loading {
+            opacity:                0;
+            transition:             opacity 0.25s ease-in;
+            transition-delay:       0s;
+        }
+
         @include breakpoint( m ) {
             margin-right:           $baseline * 8;
         }
@@ -22,6 +32,7 @@
         @include breakpoint( l ) {
             margin-right:           $baseline * 10;
         }
+
     }
 
 
