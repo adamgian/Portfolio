@@ -1,4 +1,4 @@
-const CssoWebpackPlugin = require( 'csso-webpack-plugin' ).default;
+const autoprefixer = require( 'autoprefixer' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const UglifyJSPlugin = require( 'uglifyjs-webpack-plugin' );
 
@@ -28,8 +28,14 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [ 'css-loader', 'sass-loader' ]
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: { minimize: true }
+                        },
+                        'postcss-loader',
+                        'sass-loader'
+                    ]
                 })
             },
         ]
@@ -39,9 +45,6 @@ module.exports = {
 
 
     plugins: [
-        new CssoWebpackPlugin({
-            comments: false,
-        }),
         new ExtractTextPlugin({
             allChunks: true,
             filename: 'src/_includes/css/main.min.css',

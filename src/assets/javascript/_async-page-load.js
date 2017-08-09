@@ -5,59 +5,59 @@ var sidebar = document.querySelector( '.sidebar' );
 
 
 
-if ( history.pushState ) body.addEventListener( 'click', event => {
+if ( history.pushState )
+    body.addEventListener( 'click', event => {
 
-    var target;
-    var anchors;
+        var target;
+        var anchors;
 
-    // Ignore click handler if ctrl/command clicked.
-    if ( event.metaKey || event.ctrlKey ) return;
+        // Ignore click handler if ctrl/command clicked.
+        if ( event.metaKey || event.ctrlKey ) return;
 
-    // Try to get anchor element.
-    target = ( event.target.tagName == 'A' )
-        && event.target
-        || ( event.target.parentNode.tagName == 'A' )
-        && event.target.parentNode;
+        // Try to get anchor element.
+        target = ( event.target.tagName == 'A' )
+            && event.target
+            || ( event.target.parentNode.tagName == 'A' )
+            && event.target.parentNode;
 
-    // Don't bother with running rest of code if
-    // element that was clicked is not even an anchor.
-    if ( !target ) return;
+        // Don't bother with running rest of code if
+        // element that was clicked is not even an anchor.
+        if ( !target ) return;
 
-    // Get all internal anchors on page.
-    anchors = document.querySelectorAll( `a[href^="/"]` );
+        // Get all internal anchors on page.
+        anchors = document.querySelectorAll( `a[href^="/"]` );
 
 
-    // Going through each anchor that has an internal link.
-    // If clicked link doesn't match, immediately skip.
-    Array.from( anchors ).forEach( anchor => {
+        // Going through each anchor that has an internal link.
+        // If clicked link doesn't match, immediately skip.
+        Array.from( anchors ).forEach( anchor => {
+            if ( target != anchor ) return;
 
-        if ( target != anchor ) return;
+            event.preventDefault();
+            target.blur();
 
-        event.preventDefault();
-        target.blur();
+            // Need to remove any current 'is-active' class from sidebar.
+            var sidebarAnchor = document.querySelector( '.sidebar .is-active' );
+            if ( sidebarAnchor ) sidebarAnchor.classList.remove( 'is-active' );
 
-        // Need to remove any current 'is-active' class from sidebar.
-        var sidebarAnchor = document.querySelector( '.sidebar .is-active' );
-        if ( sidebarAnchor )
-            sidebarAnchor.classList.remove( 'is-active' );
+            // Add 'is-active' class to sidebar anchor that was clicked
+            // (if it was clicked).
+            if ( sidebar.contains( target ) )
+                target.classList.add( 'is-active' );
 
-        // Add 'is-active' class to sidebar anchor that was clicked
-        // (if it was clicked).
-        if ( sidebar.contains( target ) )
-            target.classList.add( 'is-active' );
+            history.pushState( {}, null, target.href );
+            fetchPage();
+        } );
 
-        history.pushState( {}, null, target.href );
-        fetchPage();
     } );
 
-} );
 
 
 
-
-window.addEventListener( 'popstate', event => {
-    fetchPage();
-} );
+if ( history.pushState )
+    window.addEventListener( 'popstate', event => {
+        fetchPage();
+    } );
 
 
 
