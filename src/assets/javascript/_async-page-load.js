@@ -2,8 +2,6 @@ var body = document.querySelector( 'body' );
 var content = document.querySelector( '.content' );
 var sidebar = document.querySelector( '.sidebar' );
 
-var hasFinishedAnimating = false;
-
 
 
 
@@ -30,14 +28,13 @@ if ( history.pushState ) body.addEventListener( 'click', event => {
 
 
     // Going through each anchor that has an internal link.
+    // If clicked link doesn't match, immediately skip.
     Array.from( anchors ).forEach( anchor => {
 
-        // If clicked link doesn't match, immediately skip.
         if ( target != anchor ) return;
 
         event.preventDefault();
         target.blur();
-        content.classList.add( 'is-loading' );
 
         // Need to remove any current 'is-active' class from sidebar.
         var sidebarAnchor = document.querySelector( '.sidebar .is-active' );
@@ -70,7 +67,9 @@ function fetchPage() {
     var xhr = new XMLHttpRequest();
     var href = window.location.href;
     var data = {};
-    hasFinishedAnimating = false;
+    var hasFinishedAnimating = false;
+
+    content.classList.add( 'is-loading' );
 
     xhr.open( 'GET', href, true );
     xhr.responseType = 'document';

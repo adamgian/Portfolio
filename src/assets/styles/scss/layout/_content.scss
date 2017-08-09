@@ -3,6 +3,7 @@
 //  --------------------------------------------------------------------------------
 
 //  Content
+//   ├─ Loading state
 //   ├─ Rows
 //   └─ Columns
 
@@ -15,15 +16,6 @@
 //  --------------------------------------------------------------------------------
 
     .content {
-        opacity:                1;
-        transition:             opacity 0.25s ease-out;
-        transition-delay:       0.1s;
-
-        &.is-loading {
-            opacity:                0;
-            transition:             opacity 0.25s ease-in;
-            transition-delay:       0s;
-        }
 
         @include breakpoint( m ) {
             margin-right:           $baseline * 8;
@@ -33,6 +25,22 @@
             margin-right:           $baseline * 10;
         }
 
+    }
+
+
+//  Loading state ------------------------------------------------------------------
+
+    .content {
+        opacity:                1;
+        transition:             opacity 0.25s ease-out;
+        transition-delay:       0.1s;
+        position:               relative;
+
+        &.is-loading {
+            opacity:                0;
+            transition:             opacity 0.25s ease-in;
+            transition-delay:       0s;
+        }
     }
 
 
