@@ -1,0 +1,10 @@
+---
+permalink: /_headers
+---
+
+
+
+
+# Set caching for all pages
+/*
+    Cache-Control: public, max-age=604800

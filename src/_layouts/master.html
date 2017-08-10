@@ -8,16 +8,13 @@
 <html lang="en">
 
     <head>
-        <title>{{ page.title }} — Adam Gian</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, width=device-width">
-        <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    	{% include head.html %}
+    <head>
 
-        {% include head.html %}
-    </head>
+    <body>
+    	{{ content }}
 
-    {{ content }}
-
-    <script src="/assets/javascript/bundle.min.js"></script>
+    	<script src="/assets/javascript/bundle.min.js"></script>
+    </body>
 
 </html>
