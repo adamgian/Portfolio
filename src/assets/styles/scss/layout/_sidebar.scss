@@ -2,7 +2,7 @@
 //  _sidebar.scss
 //  --------------------------------------------------------------------------------
 
-//  //
+//  Sidebar
 
 
 
@@ -25,7 +25,7 @@
         }
     }
 
-    .sidebar > nav {
+    .site-nav {
         @include breakpoint( m ) {
         	position:               fixed;
             width:                  $baseline * 6;

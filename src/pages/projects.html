@@ -16,14 +16,16 @@ title: Projects
     {% endif %}
 
         <div class="column">
-            <p>
-                <a class="anchor" href="{{ project.permalink }}">{{ project.name }}</a>
-            </p>
-            <a href="{{ project.permalink }}" tabindex="-1">
-                <div class="image">
-                    <img src="{{ project.thumbnail }}" alt="{{ project.name }}">
-                </div>
-            </a>
+            <div class="thumbnail">
+                <p class="thumbnail__text">
+                    <a class="anchor" href="{{ project.permalink }}">{{ project.name }}</a>
+                </p>
+                <a class="thumbnail__media" href="{{ project.permalink }}" tabindex="-1">
+                    <div class="image">
+                        <img src="{{ project.thumbnail }}" alt="{{ project.name }}">
+                    </div>
+                </a>
+            </div>
         </div>
 
     {% if mod == 0 or forloop.last %}
