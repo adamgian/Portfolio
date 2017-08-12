@@ -1,0 +1,30 @@
+---
+permalink: /humans.txt
+---
+
+
+
+
+# AUTHOR
+
+    Name: Adam Gian
+    Email: contact@adamgian.me
+
+
+
+
+# SITE
+
+    Components/Technologies:
+        - HTML5, CSS3 & JS ES2015
+        - Jekyll
+        - Webpack
+        - SCSS
+        - NPM
+
+    Tools:
+        - Sublime Text 3
+        - GitHub
+        - Netlify
+        - ImageMagick
+        - Good old pen and paper
