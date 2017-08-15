@@ -15,10 +15,17 @@ if ( history.pushState )
         if ( event.metaKey || event.ctrlKey ) return;
 
         // Try to get anchor element.
-        target = ( event.target.tagName == 'A' )
-            && event.target
-            || ( event.target.parentNode.tagName == 'A' )
-            && event.target.parentNode;
+        if ( event.target.tagName == 'A' )
+            target = event.target;
+        else
+            (( element = event.target ) => {
+                while ( element.parentNode ) {
+                    element = element.parentNode;
+                    if ( element.tagName == 'A' )
+                        return target = element;
+                }
+                return;
+            })();
 
         // Don't bother with running rest of code if
         // element that was clicked is not even an anchor.
@@ -81,9 +88,16 @@ function fetchPage() {
             updateContent( data );
     }, 300 );
 
-    xhr.onload = function( event ) {
+    xhr.onload = ( event ) => {
         data.title = event.target.response.title;
         data.content = event.target.responseXML.querySelector( '.content' ).innerHTML;
+        if ( hasFinishedAnimating )
+            updateContent( data );
+    };
+
+    xhr.onerror = ( event ) => {
+        data.title = 'Error';
+        data.content = `<p>Sorry, there was a problem while fetching page.</p>`;
         if ( hasFinishedAnimating )
             updateContent( data );
     };
