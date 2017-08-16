@@ -47,7 +47,7 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin({
             allChunks: true,
-            filename: 'src/_includes/css/main.min.css',
+            filename: 'src/assets/styles/main.min.css',
         }),
         new UglifyJSPlugin({
             compress: {

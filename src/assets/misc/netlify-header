@@ -8,3 +8,9 @@ permalink: /_headers
 # Set caching for all pages
 /*
     Cache-Control: public, max-age=604800
+
+
+# Server push
+/*
+	Link: </assets/javascript/bundle.min.js>; rel=preload; as=script;
+	Link: </assets/styles/main.min.css>; rel=preload; as=style;
