@@ -5,12 +5,18 @@ permalink: /_headers
 
 
 
-# Set caching for all pages
+#
 /*
-    Cache-Control: public, max-age=604800
+    Accept-Encoding: gzip, deflate, br
+    Cache-Control: max-age=2595600
+    X-Frame-Options: DENY
+    X-Content-Type-Options: nosniff
+    X-XSS-Protection: 1; mode=block
+
+
 
 
 # Server push
 /*
-	Link: </assets/javascript/bundle.min.js>; rel=preload; as=script;
-	Link: </assets/styles/main.min.css>; rel=preload; as=style;
+    Link: </assets/styles/main.min.css>; rel=preload; as=style;
+    # Link: </assets/javascript/bundle.min.js>; rel=preload; as=script;

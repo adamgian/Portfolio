@@ -5,59 +5,52 @@ permalink: /service-worker.js
 
 
 
-var CACHE_NAME = 'me.adamgian.www';
-var cacheable = [
+const CACHE_NAME = 'me.adamgian.www';
+const PRECACHE = [
     '/',
-    '/projects/',
-    '/project/gravitas/',
-    '/project/adamgian/',
-    '/project/caboolturecountrymarkets/',
-    '/assets/javascript/bundle.min.js',
+    '/projects',
+    '/project/adamgian',
+    '/project/caboolturecountrymarkets',
+    '/project/gravitas',
     '/assets/styles/main.min.css',
-];
+    '/assets/javascript/bundle.min.js'
+].map( path => new Request( path, { credentials: 'include' } ) );
 
 
-self.addEventListener( 'install', event => {
-    console.log(cache);
+
+
+self.addEventListener( 'install', installHandler );
+self.addEventListener( 'activate', activateHandler );
+self.addEventListener( 'fetch', fetchHandler );
+
+
+
+
+function installHandler( event ) {
     event.waitUntil(
         caches
             .open( CACHE_NAME )
             .then( cache => {
-                return cache.addAll( cacheable );
+                return cache.addAll( PRECACHE );
             })
-            // Force waiting service worker to become active
             .then( () => {
-                return self.skipWaiting();
+                self.skipWaiting();
             })
     );
-});
+}
 
 
-self.addEventListener( 'activate', event => {
-    var whitelist = ['me.adamgian.www'];
-
+function activateHandler( event ) {
     event.waitUntil(
-        caches
-            .keys()
-            .then( cacheNames => {
-                return Promise.all(
-                    cacheNames.map( cacheName => {
-                        if ( whitelist.indexOf( cacheName ) === -1 )
-                            return caches.delete( cacheName );
-                    })
-                );
-            })
-            // Take control of uncontrolled clients, essentially
-            // putting service worker to work immediately rather
-            // than at the next page load.
-            .then( () => {
-                return self.clients.claim();
-            })
+        // Take control of uncontrolled clients, essentially
+        // putting service worker to work immediately rather
+        // than at the next page load.
+        self.clients.claim()
     );
-});
+}
 
 
-self.addEventListener( 'fetch', event  => {
+function fetchHandler( event ) {
     event.respondWith(
         caches
             .match( event.request )
@@ -88,4 +81,4 @@ self.addEventListener( 'fetch', event  => {
                     });
             })
     );
-});
+}
