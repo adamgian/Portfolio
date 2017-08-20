@@ -8,12 +8,13 @@
 
 - name: Gravitas
   permalink: /project/gravitas
-  thumbnail: test.jpg
+  thumbnail: /assets/images/projects/gravitas__draw.png
 
 - name: Caboolture Country Markets
   permalink: /project/caboolturecountrymarkets
-  thumbnail: test.jpg
+  thumbnail: /assets/images/test.png
 
 - name: Web Portfolio
   permalink: /project/adamgian
-  thumbnail: test.jpg
+  thumbnail: /assets/images/thumbnails/adam-gian.jpg
+  border: true

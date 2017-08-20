@@ -3,8 +3,8 @@
 //  --------------------------------------------------------------------------------
 
 //  Image
-//   ├─ /
-//   └─ /
+//   ├─ Bordered
+//   └─ 404
 
 
 
@@ -21,22 +21,38 @@
         display:                block;
         // The point of a ~66% bottom padding is that it will
         // lock the image container to a 3:2 ratio.
-        padding-bottom:         66.66%;
-        overflow:               hidden;
+        padding-bottom:         66.6666%;
         position:               relative;
         width:                  100%;
+
+        + .image {
+            margin-top:             $baseline;
+        }
     }
 
     // Image element within the image container
     .image > img {
-        @include absolute( top left bottom right );
+        @include size( 100% );
+        position:               absolute;
         display:                block;
-        margin:                 auto;
-        max-width:              100%;
-        pointer-events:         none;
     }
 
-    // Prettier broken image
+
+//  Bordered -----------------------------------------------------------------------
+
+    .image--border {
+        // Note: offsetting borders is required as they will
+        // alter the ratio of the image container slightly.
+        border:                 0.125em solid $color--alto;
+        box-sizing:             content-box;
+        width:                  calc( 100% - 0.25em );
+    }
+
+
+//  404 ----------------------------------------------------------------------------
+
+// Prettier broken images
+
     img[alt] {
         &::before,
         &::after {
