@@ -6,4 +6,5 @@ node_modules/
 ##### Files
 src/_includes/css/main.min.css
 src/assets/javascript/bundle.min.js
+src/assets/styles/main.min.css
 .DS_Store

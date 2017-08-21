@@ -17,14 +17,12 @@ title: Projects
 
         <div class="column">
             <div class="thumbnail">
-                <p class="thumbnail__text">
-                    <a class="anchor" href="{{ project.permalink }}">{{ project.name }}</a>
-                </p>
                 <a class="thumbnail__media" href="{{ project.permalink }}" tabindex="-1">
                     <div class="image {% if project.border %}image--border{% endif %}">
                         <img src="{{ project.thumbnail }}" alt="{{ project.name }}">
                     </div>
                 </a>
+                <a class="thumbnail__text anchor" href="{{ project.permalink }}">{{ project.name }}</a>
             </div>
         </div>
 
