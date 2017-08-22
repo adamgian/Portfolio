@@ -7,7 +7,7 @@ permalink: /service-worker.js
 
 const CACHE_NAME = 'me.adamgian.www';
 const PRECACHE = [
-    '/',
+    '/about',
     '/projects',
     '/project/adamgian',
     '/project/caboolturecountrymarkets',
