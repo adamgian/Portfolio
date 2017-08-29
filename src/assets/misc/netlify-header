@@ -8,7 +8,10 @@ permalink: /_headers
 #
 /*
     Accept-Encoding: gzip, deflate, br
+    Access-Control-Allow-Credentials: true
     Cache-Control: max-age=2595600
+    Content-Security-Policy: base-uri 'self'; default-src https:; object-src 'none'; script-src 'unsafe-inline' https://use.typekit.net https://*.adamgian.me; style-src 'self' 'sha256-nWMjX9nWSBhzHhVyKVPfoW8mSr410ToXXInXSszHVnA='; worker-src 'self'
+    Referrer-Policy: origin-when-cross-origin
     X-Frame-Options: DENY
     X-Content-Type-Options: nosniff
     X-XSS-Protection: 1; mode=block
@@ -18,5 +21,5 @@ permalink: /_headers
 
 # Server push
 /*
-    Link: </assets/styles/main.min.css>; rel=preload; as=style;
-    # Link: </assets/javascript/bundle.min.js>; rel=preload; as=script;
+    Link: </assets/styles/main.min.css>; rel=preload; as=style
+    Link: </assets/javascript/bundle.min.js>; rel=preload; as=script

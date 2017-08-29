@@ -3,7 +3,6 @@
 
 <title>{{ page.title }} — Adam Gian</title>
 
-<link rel="preload" href="/assets/javascript/bundle.min.js" as="script">
 <link rel="preload" href="https://use.typekit.net/kub1snq.js" as="script">
 <link rel="preconnect" href="https://p.typekit.net">
 <link rel="preconnect" href="https://use.typekit.net">
@@ -12,21 +11,9 @@
 <link rel="icon" href="/assets/images/favicon.png" type="image/png">
 
 <link rel="author" href="/humans.txt">
-
-
-<!-- Typekit webfont -->
-<script>
-    (function(d) {
-        var config = {
-            kitId: 'kub1snq',
-            scriptTimeout: 3000,
-            async: true
-        },
-        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-    })(document);
-</script>
-
-
+{% if page.description %}
+<meta name="description" content="{{ page.description }}">
+{% endif %}
 
 <link rel="stylesheet" href="/assets/styles/main.min.css">
 <script src="/assets/javascript/bundle.min.js" defer></script>

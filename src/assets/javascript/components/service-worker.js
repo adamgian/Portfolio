@@ -12,9 +12,7 @@ const PRECACHE = [
     '/project/adamgian',
     '/project/caboolturecountrymarkets',
     '/project/gravitas',
-    '/assets/styles/main.min.css',
-    '/assets/javascript/bundle.min.js'
-].map( path => new Request( path, { credentials: 'include' } ) );
+];
 
 
 
@@ -27,6 +25,8 @@ self.addEventListener( 'fetch', fetchHandler );
 
 
 function installHandler( event ) {
+    console.log( 'Installing service worker' );
+
     event.waitUntil(
         caches
             .open( CACHE_NAME )
@@ -41,6 +41,8 @@ function installHandler( event ) {
 
 
 function activateHandler( event ) {
+    console.log( 'Activating handler' );
+
     event.waitUntil(
         // Take control of uncontrolled clients, essentially
         // putting service worker to work immediately rather
@@ -51,10 +53,16 @@ function activateHandler( event ) {
 
 
 function fetchHandler( event ) {
+    console.log( 'Fetch handler' );
+
     event.respondWith(
         caches
             .match( event.request )
             .then( response => {
+                console.log( 'Fetching request via service worker' );
+                console.log( event );
+                console.log( response );
+
                 // Already in cache.
                 // No need to fetch request and place in cache
                 if ( response ) return response;
@@ -64,13 +72,21 @@ function fetchHandler( event ) {
 
                 return fetch( event.request )
                     .then( response => {
-                        // Check that response is valid
-                        if ( !response || response.status !== 200 || response.type !== 'basic' )
+
+                        // Check that response is valid:
+                        //   - reponse exists
+                        //   - same origin
+                        //   - succesful response
+                        if ( !response || response.type !== 'basic' || response.status !== 200 )
                             return response;
+
+                        console.log( 'Fetching new request via service worker' );
+                        console.log( response );
 
                         // Clone response
                         var responseToCache = response.clone();
 
+                        // Put previously uncached item into cache.
                         caches
                             .open( CACHE_NAME )
                             .then( cache => {
