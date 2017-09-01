@@ -13,7 +13,7 @@
 //  --------------------------------------------------------------------------------
 
     .sidebar {
-        margin-bottom:          $baseline * 2;
+        margin-bottom:          $baseline * 3;
 
         @include breakpoint( m ) {
             float:                  right;

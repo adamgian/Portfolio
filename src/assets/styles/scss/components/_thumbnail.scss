@@ -17,6 +17,7 @@
     .thumbnail {
         display:                flex;
         flex-direction:         column;
+        padding-bottom:         $baseline * (3/4);
     }
 
 
