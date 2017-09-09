@@ -16,6 +16,7 @@
 //  --------------------------------------------------------------------------------
 
     .content {
+        position:               relative;
 
         @include breakpoint( m ) {
             margin-right:           $baseline * 8;
@@ -30,16 +31,57 @@
 
 //  Loading state ------------------------------------------------------------------
 
+    // Content overlay
     .content {
-        opacity:                1;
-        transition:             opacity 0.25s ease-out;
-        transition-delay:       0.1s;
-        position:               relative;
-
-        &.is-loading {
+        &::before {
+            @include absolute( top -1em left -1em );
+            @include size( calc( 100% + 2em ) );
+            background-color:       $color--alabaster;
+            content:                '';
             opacity:                0;
+            pointer-events:         none;
+            transition:             opacity 0.25s ease-out;
+            transition-delay:       0.25s;
+            z-index:                1;
+        }
+
+        &.is-loading::before {
+            opacity:                1;
+            pointer-events:         all;
             transition:             opacity 0.25s ease-in;
             transition-delay:       0s;
+        }
+    }
+
+    // Preloader spinner
+    .content {
+        &::after {
+            opacity:                0;
+            content:                '−';
+            font-family:            monospace;
+            transition:             opacity 0.2s ease-out;
+            transition-delay:       0s;
+        }
+
+        &.is-loading::after {
+            @include absolute( top left );
+            animation:              0.3s preloader infinite;
+            opacity:                1;
+            transition:             opacity 0.2s ease-in;
+            transition-delay:       0.5s;
+            z-index:                1;
+        }
+    }
+
+    @keyframes preloader {
+        25% {
+            content:                '\\';
+        }
+        50% {
+            content:                '|';
+        }
+        75% {
+            content:                '/';
         }
     }
 
