@@ -74,7 +74,9 @@ function fetchPage() {
     var xhr = new XMLHttpRequest();
     var href = window.location.href;
     var data = {};
-    var hasFinishedAnimating = false;
+    var animationStart = Date.now();
+
+    const ANIMATION_DURATION = 300;
 
     content.classList.add( 'is-loading' );
 
@@ -82,17 +84,23 @@ function fetchPage() {
     xhr.responseType = 'document';
     xhr.send();
 
-    setTimeout( () => {
-        hasFinishedAnimating = true;
-        if ( data.title && data.content )
-            updateContent( data );
-    }, 300 );
-
     xhr.onload = ( event ) => {
         data.title = event.target.response.title;
         data.content = event.target.responseXML.querySelector( '.content' ).innerHTML;
+
+        var animationLeft = ANIMATION_DURATION - ( Date.now() - animationStart );
+        var hasFinishedAnimating = animationLeft <= 0;
+
+        // Animation has completed. it is okay
+        // to update the content.
         if ( hasFinishedAnimating )
             updateContent( data );
+        // Wait for animation to finish before
+        // updating content.
+        else
+            setTimeout( () => {
+                updateContent( data );
+            }, animationLeft );
     };
 
     xhr.onerror = ( event ) => {
