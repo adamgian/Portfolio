@@ -17,7 +17,7 @@
     .image {
         background-color:       $color--wild-sand;
         // Force whatever element this class may be
-        // in to always display as a block.
+        // applied to always display as a block.
         display:                block;
         // The point of a ~66% bottom padding is that it will
         // lock the image container to a 3:2 ratio.
@@ -41,11 +41,7 @@
 //  Bordered -----------------------------------------------------------------------
 
     .image--border {
-        // Note: offsetting borders is required as they will
-        // alter the ratio of the image container slightly.
         border:                 0.125em solid $color--alto;
-        box-sizing:             content-box;
-        width:                  calc( 100% - 0.25em );
     }
 
 
@@ -54,14 +50,14 @@
 // Prettier broken images
 
     img[alt] {
-        &::before,
-        &::after {
+        &::after,
+        &::before {
             box-sizing:             border-box;
             color:                  rgba( 0, 0, 0, 0.2 );
             padding:                $baseline calc( #{$baseline/2} + 1% );
         }
 
-        &::before {
+        &::after {
             @include absolute( top left );
             @include size( 100% );
             background-color:       $color--wild-sand;
@@ -70,12 +66,13 @@
             font-weight:            bold;
         }
 
-        &::after {
+        &::before {
             @include absolute( top $baseline left );
             content:                '“' attr( alt ) '”';
             font-size:              0.9em;
             font-style:             italic;
             height:                 calc( 100% - #{$baseline * 2} );
             width:                  100%;
+            z-index:                1;
         }
     }
