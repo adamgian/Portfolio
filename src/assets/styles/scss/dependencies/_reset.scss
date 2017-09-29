@@ -41,10 +41,6 @@
         border-spacing:         0;
     }
 
-    img {
-        display:                block;
-    }
-
 
 //  Interactive elements -----------------------------------------------------------
 
@@ -63,11 +59,17 @@
 //  Layout -------------------------------------------------------------------------
 
     html {
-        max-width:              $breakpoint--max;
-        min-width:              $breakpoint--min;
+        background-color:       $color--alabaster;
+        // Set a 'fixed' width and hide overflow to <html>
+        // element which prevents any cases where content may
+        // reflow — due to an appearing/disappearing vertical
+        // scrollbar when navigating between short/long pages.
+        overflow-x:             hidden;
+        width:                  100vw;
     }
 
     body {
-        background-color:       $color--alabaster;
+        max-width:              $breakpoint--max;
+        min-width:              $breakpoint--min;
         padding:                ( $baseline * 2 ) ( $baseline );
     }

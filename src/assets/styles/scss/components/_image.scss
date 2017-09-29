@@ -33,8 +33,9 @@
     // Image element within the image container
     .image > img {
         @include size( 100% );
-        position:               absolute;
         display:                block;
+        position:               absolute;
+        z-index:                0;
     }
 
 
