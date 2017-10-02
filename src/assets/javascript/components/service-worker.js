@@ -5,7 +5,7 @@ permalink: /service-worker.js
 
 
 
-const CACHE_NAME = 'me.adamgian.www';
+const CACHE_NAME = 'me.adamgian.www@v5';
 const PRECACHE = [
     '/about',
     '/projects',
@@ -25,8 +25,6 @@ self.addEventListener( 'fetch', fetchHandler );
 
 
 function installHandler( event ) {
-    console.log( 'Installing service worker' );
-
     event.waitUntil(
         caches
             .open( CACHE_NAME )
@@ -41,27 +39,35 @@ function installHandler( event ) {
 
 
 function activateHandler( event ) {
-    console.log( 'Activating handler' );
+    var expectedCaches = [ CACHE_NAME ];
 
     event.waitUntil(
-        // Take control of uncontrolled clients, essentially
-        // putting service worker to work immediately rather
-        // than at the next page load.
-        self.clients.claim()
+        caches
+            .keys()
+            // Removing old cache versions
+            .then( cacheNames => {
+                return Promise.all(
+                    cacheNames.map( cacheName => {
+                        if ( !expectedCaches.includes( cacheName ) )
+                            return caches.delete( cacheName );
+                    })
+                )
+            })
+            // Take control of uncontrolled clients, essentially
+            // putting service worker to work immediately rather
+            // than at the next page load.
+            .then( () => {
+                self.clients.claim()
+            })
     );
 }
 
 
 function fetchHandler( event ) {
-    console.log( 'Fetch handler' );
-
     event.respondWith(
         caches
             .match( event.request )
             .then( response => {
-                console.log( 'Fetching request via service worker' );
-                console.log( event );
-                console.log( response );
 
                 // Already in cache.
                 // No need to fetch request and place in cache
@@ -80,9 +86,6 @@ function fetchHandler( event ) {
                         if ( !response || response.type !== 'basic' || response.status !== 200 )
                             return response;
 
-                        console.log( 'Fetching new request via service worker' );
-                        console.log( response );
-
                         // Clone response
                         var responseToCache = response.clone();
 
@@ -95,6 +98,7 @@ function fetchHandler( event ) {
 
                         return response;
                     });
+
             })
     );
 }
