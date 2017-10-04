@@ -11,3 +11,4 @@ destination: dist/
 exclude:
     - assets/styles/scss/
     - assets/javascript/main.js
+    - assets/javascript/polyfill.js

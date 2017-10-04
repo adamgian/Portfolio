@@ -5,7 +5,7 @@ permalink: /service-worker.js
 
 
 
-const CACHE_NAME = 'me.adamgian.www@v5';
+const CACHE_NAME = 'me.adamgian.www@v6';
 const PRECACHE = [
     '/about',
     '/projects',

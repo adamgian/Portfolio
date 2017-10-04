@@ -1,15 +1,19 @@
 const autoprefixer = require( 'autoprefixer' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const UglifyJSPlugin = require( 'uglifyjs-webpack-plugin' );
+const webpack = require( 'webpack' );
 
 
 
 
 module.exports = {
 
-    entry: './src/assets/javascript/main.js',
+    entry: {
+        polyfill: './src/assets/javascript/polyfill.js',
+        main: './src/assets/javascript/main.js'
+    },
     output: {
-        filename: './src/assets/javascript/bundle.min.js',
+        filename: './src/assets/javascript/[name]-bundle.min.js',
     },
 
 
@@ -45,9 +49,12 @@ module.exports = {
 
 
     plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            name: [ 'polyfill', 'main' ]
+        }),
         new ExtractTextPlugin({
             allChunks: true,
-            filename: 'src/assets/styles/main.min.css',
+            filename: '/src/assets/styles/main.min.css',
         }),
         new UglifyJSPlugin({
             compress: {

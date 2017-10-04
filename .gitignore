@@ -3,8 +3,19 @@ dist/
 node_modules/
 
 
+
+
 ##### Files
-src/_includes/css/main.min.css
-src/assets/javascript/bundle.min.js
+npm-debug.log
+
+# Webpack generated
+src/assets/javascript/main-bundle.min.js
+src/assets/javascript/polyfill-bundle.min.js
 src/assets/styles/main.min.css
+
+# OS related
 .DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
