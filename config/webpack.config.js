@@ -37,7 +37,12 @@ module.exports = {
                             loader: 'css-loader',
                             options: { minimize: true }
                         },
-                        'postcss-loader',
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: loader => [ require('autoprefixer') ]
+                            }
+                        },
                         'sass-loader'
                     ]
                 })

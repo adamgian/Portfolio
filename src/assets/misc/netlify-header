@@ -22,4 +22,4 @@ permalink: /_headers
 # Server push
 /*
     Link: </assets/styles/main.min.css>; rel=preload; as=style
-    Link: </assets/javascript/bundle.min.js>; rel=preload; as=script
+    Link: </assets/javascript/main-bundle.min.js>; rel=preload; as=script
