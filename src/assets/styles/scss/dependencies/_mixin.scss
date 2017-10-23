@@ -127,7 +127,7 @@
             }
         }
         @else if $start and $end {
-            @media ( min-width: $start ) and ( max-width: $end ) {
+            @media ( min-width: $start ) and ( max-width: $end - 1 ) {
                 @content;
             }
         }
