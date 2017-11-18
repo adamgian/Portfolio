@@ -5,7 +5,7 @@ permalink: /service-worker.js
 
 
 
-const CACHE_NAME = 'me.adamgian.www@v6';
+const CACHE_NAME = 'me.adamgian.www@{{ site.time | date: "%y%m%d" }}';
 const PRECACHE = [
     '/about',
     '/projects',
