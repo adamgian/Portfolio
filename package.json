@@ -3,8 +3,8 @@
     "version": "0.0.27",
     "author": {
         "name": "Adam Gian",
-        "email": "contact@adamgian.me",
-        "url": "adamgian.me"
+        "email": "contact@adamgian.com",
+        "url": "adamgian.com"
     },
     "license": "ISC",
     "private": true,
@@ -37,6 +37,9 @@
         "style-loader": "^0.18.2",
         "uglifyjs-webpack-plugin": "^0.4.6",
         "webpack": "^3.4.1"
+    },
+    "engines": {
+        "node": ">=9.1.0"
     },
     "browserslist": [
         "last 2 versions"
