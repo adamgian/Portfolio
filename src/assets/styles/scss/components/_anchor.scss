@@ -129,13 +129,15 @@
     .anchor {
 
         &::after {
-            @include absolute( top -6px left -5px );
             @include size( 100% );
             background-color:       $color--tango;
             content:                '';
             display:                block;
+            left:                   -( $baseline / 6 );
             opacity:                0;
-            padding:                5px;
+            padding:                $baseline / 6;
+            position:               absolute;
+            top:                    -( $baseline / 6 );
             transition:             opacity 0.2s ease-in-out;
             z-index:                -1;
         }
