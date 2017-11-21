@@ -10,10 +10,11 @@ permalink: /_headers
     Accept-Encoding: gzip, deflate, br
     Access-Control-Allow-Credentials: true
     Cache-Control: max-age=2595600
-    Content-Security-Policy: base-uri 'self'; default-src https:; object-src 'none'; script-src 'unsafe-inline' https://use.typekit.net https://*.adamgian.me; style-src 'self' 'sha256-nWMjX9nWSBhzHhVyKVPfoW8mSr410ToXXInXSszHVnA='; worker-src 'self'
+    Content-Security-Policy: base-uri 'self'; default-src https:; object-src 'none'; script-src 'unsafe-inline' https://adamgian.com https://use.typekit.net https://mc.yandex.ru; style-src 'self'; worker-src 'self'
     Referrer-Policy: origin-when-cross-origin
-    X-Frame-Options: DENY
     X-Content-Type-Options: nosniff
+    X-Frame-Options: DENY
+    X-UA-Compatible: ie=edge
     X-XSS-Protection: 1; mode=block
 
 
