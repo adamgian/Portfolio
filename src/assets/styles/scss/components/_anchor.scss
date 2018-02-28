@@ -22,12 +22,11 @@
         // by using background image positioned beneath text.
         background-image:       linear-gradient(
                                     to top,
-                                    rgba( 242, 111, 24, 1 ) 0.125em,
-                                    rgba( 0, 0, 0, 0 ) 0.125em
+                                    rgba( 242, 111, 24, 1 ) 2px,
+                                    rgba( 0, 0, 0, 0 ) 2px
                                 );
         background-size:        100% 100%;
         background-repeat:      no-repeat;
-
         font-style:             normal;
         position:               relative;
         text-decoration:        none;
@@ -78,12 +77,12 @@
     // Strikethrough
     .anchor {
         &::before {
-            border-top:             0.125em solid $color--tango;
+            border-top:             2px solid $color--tango;
+            bottom:                 calc( 0.33em + 2px );
             content:                '';
             left:                   -3px;
             pointer-events:         none;
             position:               absolute;
-            top:                    calc( 100% - 0.5625em );
             transform:              scaleX( 0 );
             transform-origin:       100% 50%;
             transition:             transform 0.125s ease-in;

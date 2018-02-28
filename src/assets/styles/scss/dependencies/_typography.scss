@@ -21,7 +21,7 @@
     // The following elements can have text and
     // therefore should get typograhic styling.
     h1, h2, h3, p, a, i,
-    button, li, th, td,
+    button, ul, li, th, td,
     div, span, section, pre,
     label, input, textarea {
         // Allows for font styles (color, typeface, size
@@ -63,15 +63,15 @@
     // Fluid typography
     html {
         @include breakpoint( 0, s ) {
-            font-size:              calc( #{$font-size--body - 2} + 2 * (( 100vw - #{$breakpoint--min} ) / ( #{strip-unit( $breakpoint--s ) - 20} - #{strip-unit( $breakpoint--min )} )) );
+            @include fluid-type( $font-size--body - 2, $font-size--body, $breakpoint--min, $breakpoint--s - 20 );
         }
 
         @include breakpoint( s, m ) {
-            font-size:              calc( #{$font-size--body - 1} + 1 * (( 100vw - #{$breakpoint--s} ) / ( #{strip-unit( $breakpoint--m ) - 20} - #{strip-unit( $breakpoint--s )} )) );
+            @include fluid-type( $font-size--body - 1, $font-size--body, $breakpoint--s, $breakpoint--m - 20 );
         }
 
         @include breakpoint( m, l ) {
-            font-size:              calc( #{$font-size--body - 1} + 1 * (( 100vw - #{$breakpoint--m} ) / ( #{strip-unit( $breakpoint--l )} - #{strip-unit( $breakpoint--m )} )) );
+            @include fluid-type( $font-size--body - 1, $font-size--body, $breakpoint--m, $breakpoint--l );
         }
 
         // Stop font size from shrinking once under

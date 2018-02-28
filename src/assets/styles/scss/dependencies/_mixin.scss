@@ -6,7 +6,7 @@
 //   ├─ Sizing
 //   ├─ Positioning
 //   ├─ Responsive breakpoints
-//   └─ Input placeholder
+//   └─ Fluid type
 
 
 
@@ -130,6 +130,33 @@
             @media ( min-width: $start ) and ( max-width: $end - 1 ) {
                 @content;
             }
+        }
+
+    }
+
+
+//. Fluid type ---------------------------------------------------------------------
+
+//  Fluid type sizes based in size of viewport width.
+//  Note: params must be all of the same unit type (ie. all
+//  px or em) for the algorithm to work.
+//  use cases:
+//    – @include fluid-type( 15px, 20px, 375px, 1250px );
+//    – @include fluid-type( 1em, 1.25em, 48em, 68em );
+
+    @mixin fluid-type( $font-size--min, $font-size--max, $vw--min, $vw--max ) {
+
+        $u1: unit( $font-size--min );
+        $u2: unit( $font-size--max );
+        $u3: unit( $vw--min );
+        $u4: unit( $vw--max );
+
+        // Checking that all params have the same unit format.
+        @if $u1 == $u2 and $u2 == $u3 and $u3 == $u4 {
+            font-size: calc( #{$font-size--min} + #{strip-unit( $font-size--max - $font-size--min )} * (( 100vw - #{$vw--min} ) / ( #{strip-unit( $vw--max - $vw--min )} )) );
+        }
+        @else {
+            @warn "All parameters must be of the same unit type."
         }
 
     }

@@ -7,15 +7,15 @@ Uncompiled portfolio site source. Powered by Jekyll, NPM and Webpack. While code
 
 ### Notes
 
-```
+```shell
 gem install jekyll
 npm install
 ```
 
-```
-// Serve development jekyll and webpack
+```shell
+# Serve development jekyll and webpack
 npm run dev
 
-// Build production jekyll and webpack
+# Build production jekyll and webpack
 npm run build
 ```
