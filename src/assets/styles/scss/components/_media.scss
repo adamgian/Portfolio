@@ -2,8 +2,9 @@
 //  _image.scss
 //  --------------------------------------------------------------------------------
 
+//  General media container
+//   └─ Bordered
 //  Image
-//   ├─ Bordered
 //   └─ 404
 
 
@@ -11,40 +12,51 @@
 
 
 //  --------------------------------------------------------------------------------
-//  Image
+//  General media container
 //  --------------------------------------------------------------------------------
 
-    .image {
+    .media {
         background-color:       $color--wild-sand;
         // Force whatever element this class may be
         // applied to always display as a block.
         display:                block;
+        overflow:               hidden;
         // The point of a ~66% bottom padding is that it will
         // lock the image container to a 3:2 ratio.
         padding-bottom:         66.6666%;
         position:               relative;
         width:                  100%;
 
-        + .image {
+        + .media {
             margin-top:             $baseline;
         }
     }
 
     // Image element within the image container
-    .image > img {
-        @include size( 100% );
-        display:                block;
-        position:               absolute;
-        z-index:                0;
+    .media {
+        > img,
+        > video {
+            display:                block;
+            max-width:              100%;
+            position:               absolute;
+            z-index:                0;
+        }
     }
 
 
 //  Bordered -----------------------------------------------------------------------
 
-    .image--border {
+    .media--border {
         border:                 0.125em solid $color--alto;
     }
 
+
+
+
+
+//  --------------------------------------------------------------------------------
+//  Images
+//  --------------------------------------------------------------------------------
 
 //  404 ----------------------------------------------------------------------------
 

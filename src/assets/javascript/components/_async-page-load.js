@@ -71,12 +71,12 @@ if ( history.pushState )
 
 function fetchPage() {
 
+    const ANIMATION_DURATION = 300;
+
     var xhr = new XMLHttpRequest();
     var href = window.location.href;
     var data = {};
     var animationStart = Date.now();
-
-    const ANIMATION_DURATION = 300;
 
     content.classList.add( 'is-loading' );
 
@@ -84,9 +84,9 @@ function fetchPage() {
     xhr.responseType = 'document';
     xhr.send();
 
-    xhr.onload = ( event ) => {
-        data.title = event.target.response.title;
-        data.content = event.target.responseXML.querySelector( '.content' ).innerHTML;
+    xhr.onload = ( res ) => {
+        data.title = res.target.response.title;
+        data.content = res.target.responseXML.querySelector( '.content' ).innerHTML;
 
         var animationLeft = ANIMATION_DURATION - ( Date.now() - animationStart );
         var hasFinishedAnimating = animationLeft <= 0;
@@ -103,7 +103,7 @@ function fetchPage() {
             }, animationLeft );
     };
 
-    xhr.onerror = ( event ) => {
+    xhr.onerror = ( res ) => {
         data.title = 'Error';
         data.content = `<p>Sorry, there was a problem while fetching page.</p>`;
         if ( hasFinishedAnimating )
@@ -116,11 +116,18 @@ function fetchPage() {
 
 
 function updateContent( data ) {
+
+    var event = new Event( 'load' );
+
     // Update title
     document.title = data.title;
+
     // Update content
     content.innerHTML = data.content;
+
     // Finalise page loading
     window.scrollTo( 0, 0 );
+    window.dispatchEvent( event );
     content.classList.remove( 'is-loading' );
+
 }
