@@ -12,7 +12,8 @@
 
 - name: Caboolture Country Markets
   permalink: /project/caboolturecountrymarkets
-  thumbnail: /assets/images/test.png
+  thumbnail: /assets/images/thumbnails/caboolture-country-markets.jpg
+  border: true
 
 - name: Web Portfolio
   permalink: /project/adamgian
