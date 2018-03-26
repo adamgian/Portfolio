@@ -2,11 +2,11 @@
 import '../styles/scss/main.scss';
 
 // Javascript assets
+import './components/analytics/_base.js';
 import './components/_async-page-load.js';
 import './components/_typekit.js';
 import './components/_service-worker.js';
 import './components/_vertical-rhythm.js';
-import './components/_yandex-analytics.js';
 
 
 
