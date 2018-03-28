@@ -43,7 +43,9 @@ module.exports = {
                                 plugins: loader => [ require('autoprefixer') ]
                             }
                         },
-                        'sass-loader'
+                        {
+                            loader: 'sass-loader'
+                        }
                     ]
                 })
             },

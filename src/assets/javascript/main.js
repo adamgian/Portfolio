@@ -2,7 +2,7 @@
 import '../styles/scss/main.scss';
 
 // Javascript assets
-import './components/analytics/_base.js';
+import './components/_analytics.js';
 import './components/_async-page-load.js';
 import './components/_typekit.js';
 import './components/_service-worker.js';
@@ -26,6 +26,7 @@ function main( err ) {
     // (regardless) carry on with the rest of the code.
     if ( err ) console.error( err );
 }
+
 
 function loadPolyfill( src, done ) {
     var js = document.createElement( 'script' );
