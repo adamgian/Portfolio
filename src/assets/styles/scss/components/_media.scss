@@ -46,8 +46,20 @@
 
 //  Bordered -----------------------------------------------------------------------
 
+    // .media.media--border
     .media--border {
-        border:                 0.125em solid $color--alto;
+        &::after {
+            @include absolute( top left );
+            @include size( 100% );
+            border:                 0.125em solid $color--alto;
+            box-sizing:             border-box;
+            content:                '';
+        }
+
+        > img,
+        > video {
+            padding:                0.125em;
+        }
     }
 
 
