@@ -16,6 +16,7 @@
 //  --------------------------------------------------------------------------------
 
     .content {
+        padding:                ( $baseline * 2 ) ( $baseline );
         position:               relative;
 
         @include breakpoint( m ) {
@@ -34,8 +35,9 @@
     // Content overlay
     .content {
         &::before {
-            @include absolute( top -1em left -1em );
-            @include size( calc( 100% + 2em ) );
+            @include absolute( left );
+            @include size( 100% );
+            background-clip:        content-box;
             background-color:       $color--alabaster;
             content:                '';
             opacity:                0;
@@ -43,9 +45,20 @@
             transition:             opacity 0.25s ease-out;
             transition-delay:       0.25s;
             z-index:                1;
+
+            @include breakpoint( 0, m ) {
+                border-top:             ( $baseline * 6 ) solid transparent;
+                top:                    -$baseline * 6;
+            }
+
+            @include breakpoint( m ) {
+                border-right:           100vw solid transparent;
+                top:                    0;
+            }
         }
 
         &.is-loading::before {
+            cursor:                 wait;
             opacity:                1;
             pointer-events:         all;
             transition:             opacity 0.25s ease-in;
@@ -56,15 +69,20 @@
     // Preloader spinner
     .content {
         &::after {
+            @include absolute( top ($baseline * 2) left ($baseline) );
             opacity:                0;
             content:                '−';
             font-family:            monospace;
+            pointer-events:         none;
             transition:             opacity 0.2s ease-out;
             transition-delay:       0s;
+
+            @include breakpoint( m ) {
+                position:               fixed;
+            }
         }
 
         &.is-loading::after {
-            @include absolute( top left );
             animation:              0.3s preloader infinite;
             opacity:                1;
             transition:             opacity 0.2s ease-in;
