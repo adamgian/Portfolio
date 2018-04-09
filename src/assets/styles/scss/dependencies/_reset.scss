@@ -54,21 +54,3 @@
     button {
         cursor:                 pointer;
     }
-
-
-//  Layout -------------------------------------------------------------------------
-
-    html {
-        background-color:       $color--alabaster;
-        // Set a 'fixed' width and hide overflow to <html>
-        // element which prevents any cases where content may
-        // reflow — due to an appearing/disappearing vertical
-        // scrollbar when navigating between short/long pages.
-        overflow-x:             hidden;
-        width:                  100vw;
-    }
-
-    body {
-        max-width:              $breakpoint--max;
-        min-width:              $breakpoint--min;
-    }

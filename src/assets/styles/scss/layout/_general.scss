@@ -1,0 +1,33 @@
+//  --------------------------------------------------------------------------------
+//  _general.scss
+//  --------------------------------------------------------------------------------
+
+//  General
+
+
+
+
+//  --------------------------------------------------------------------------------
+//  General
+//  --------------------------------------------------------------------------------
+
+    html {
+        background-color:       $color--alabaster;
+        // Set a 'fixed' width and hide overflow to <html>
+        // element which prevents any cases where content may
+        // reflow — due to an appearing/disappearing vertical
+        // scrollbar when navigating between short/long pages.
+        overflow-x:             hidden;
+        width:                  100vw;
+    }
+
+    body {
+        // Initial page load (fade in) animation
+        animation-delay:        300ms;
+        animation-duration:     250ms;
+        animation-fill-mode:    both;
+        animation-name:         fade-in;
+
+        max-width:              $breakpoint--max;
+        min-width:              $breakpoint--min;
+    }

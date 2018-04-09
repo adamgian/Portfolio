@@ -24,6 +24,7 @@
     @import 'dependencies/utility';
     @import 'dependencies/reset';
     @import 'dependencies/typography';
+    @import 'dependencies/animation';
 
 
 //  Components ---------------------------------------------------------------------
@@ -35,5 +36,6 @@
 
 //  Layout -------------------------------------------------------------------------
 
+    @import 'layout/general';
     @import 'layout/sidebar';
     @import 'layout/content';
