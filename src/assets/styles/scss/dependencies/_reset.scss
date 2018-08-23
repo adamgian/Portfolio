@@ -10,13 +10,13 @@
 //  Reset and normalise styles
 //  --------------------------------------------------------------------------------
 
-    html, body, div, span, object, iframe,
+    html, body, main, div, span, object, iframe,
     header, footer, aside, nav, section, article,
     address, legend, code, pre,
     ul, ol, li, dl, dt, dd,
     h1, h2, h3, h4, h5, h6, p, a, i,
     strong, em, sub, sup,
-    fieldset, radiogroup, figcaption, figure,
+    fieldset, radiogroup, figure, figcaption,
     form, input, select, textarea, label, button,
     table, thead, tfoot, tbody, tr, th, td,
     img, audio, video {
@@ -30,8 +30,8 @@
 
     // Making sure that older browsers
     // display html5 elements correctly.
-    article, aside, details, fieldset, figcaption,
-    figure, footer, header, hgroup, menu,
+    main, article, aside, details, fieldset,
+    figure, figcaption, footer, header, hgroup, menu,
     nav, radiogroup, section {
         display:                block;
     }
