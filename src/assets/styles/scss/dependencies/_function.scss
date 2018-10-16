@@ -27,6 +27,9 @@
         @if $b == 0 {
             @return hsla( 0, 0, 0, $a );
         }
+        @else if $b == 100 {
+            @return hsla( 0, 0, 100, $a );
+        }
         @else {
             $hsl--l: ( $b / 2 ) * ( 2 - ( $s / 100 ) );
             $hsl--s: ( $b * $s ) / if( $hsl--l < 50, $hsl--l * 2, 200 - $hsl--l * 2 );
