@@ -30,28 +30,8 @@
         font-style:             normal;
         position:               relative;
         text-decoration:        none;
-        text-shadow:            $color--alabaster 0.12em 0.06em,
-                                $color--alabaster 0.12em 0.03em,
-                                $color--alabaster 0.12em 0,
-                                $color--alabaster 0.12em -0.03em,
-                                $color--alabaster 0.12em -0.06em,
-
-                                $color--alabaster 0.09em 0.06em,
-                                $color--alabaster 0.06em 0.06em,
-                                $color--alabaster 0.03em 0.06em,
-                                $color--alabaster 0 0.06em,
-                                $color--alabaster -0.03em 0.06em,
-                                $color--alabaster -0.06em 0.06em,
-                                $color--alabaster -0.09em 0.06em,
-
-                                $color--alabaster -0.12em 0.06em,
-                                $color--alabaster -0.12em 0.03em,
-                                $color--alabaster -0.12em 0,
-                                $color--alabaster -0.12em -0.03em,
-                                $color--alabaster -0.12em -0.06em;
         transition:             background-size 0.125s ease-in-out 0.25s,
-                                color 0.2s ease-in-out,
-                                text-shadow 2s ease-in-out 0.2s;
+                                color 0.2s ease-in-out;
         white-space:            nowrap;
         // Note: Required to set a z-index to create a new
         // stacking context. ie. the background pseudo element
@@ -105,9 +85,7 @@
         &:focus,
         &:hover {
             color:                  white;
-            text-shadow:            none;
-            transition:             color 0.2s ease-in-out 0.1s,
-                                    text-shadow 0s linear 0.1s;
+            transition:             color 0.2s ease-in-out 0.1s;
         }
     }
 
@@ -134,9 +112,9 @@
             display:                block;
             left:                   -( $baseline / 6 );
             opacity:                0;
-            padding:                $baseline / 6;
+            padding:                ($baseline / 7) ($baseline / 6);
             position:               absolute;
-            top:                    -( $baseline / 6 );
+            top:                    -( $baseline / 7 );
             transition:             opacity 0.2s ease-in-out;
             z-index:                -1;
         }
