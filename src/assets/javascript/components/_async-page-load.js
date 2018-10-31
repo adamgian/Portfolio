@@ -76,7 +76,10 @@ function fetchPage() {
     var xhr = new XMLHttpRequest();
     var href = window.location.href;
     var data = {};
+
     var animationStart = Date.now();
+    var animationLeft = ANIMATION_DURATION - ( Date.now() - animationStart );
+    var hasFinishedAnimating = animationLeft <= 0;
 
     content.classList.add( 'is-loading' );
 
@@ -88,15 +91,8 @@ function fetchPage() {
         data.title = res.target.response.title;
         data.content = res.target.responseXML.querySelector( '.content' ).innerHTML;
 
-        var animationLeft = ANIMATION_DURATION - ( Date.now() - animationStart );
-        var hasFinishedAnimating = animationLeft <= 0;
-
-        // Animation has completed. it is okay
-        // to update the content.
         if ( hasFinishedAnimating )
             updateContent( data );
-        // Wait for animation to finish before
-        // updating content.
         else
             setTimeout( () => {
                 updateContent( data );
@@ -106,8 +102,13 @@ function fetchPage() {
     xhr.onerror = ( res ) => {
         data.title = 'Error';
         data.content = `<p>Sorry, there was a problem while fetching page.</p>`;
+
         if ( hasFinishedAnimating )
             updateContent( data );
+        else
+            setTimeout( () => {
+                updateContent( data );
+            }, animationLeft );
     };
 
 }

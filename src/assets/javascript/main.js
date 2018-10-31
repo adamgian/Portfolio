@@ -5,7 +5,7 @@ import '../styles/scss/main.scss';
 import './components/_analytics.js';
 import './components/_async-page-load.js';
 import './components/_typekit.js';
-import './components/_service-worker.js';
+// import './components/_service-worker.js';
 import './components/_vertical-rhythm.js';
 
 
