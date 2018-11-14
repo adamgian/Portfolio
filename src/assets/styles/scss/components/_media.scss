@@ -51,14 +51,9 @@
         &::after {
             @include absolute( top left );
             @include size( 100% );
-            border:                 2px solid $color--alto;
+            border:                 1px solid hsb( 0, 0, 0, 0.05 );
             box-sizing:             border-box;
             content:                '';
-        }
-
-        > img,
-        > video {
-            padding:                2px;
         }
     }
 
