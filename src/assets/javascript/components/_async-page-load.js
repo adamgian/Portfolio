@@ -118,7 +118,14 @@ function fetchPage() {
 
 function updateContent( data ) {
 
-    var event = new Event( 'load' );
+    var event;
+
+    if ( typeof( Event ) === 'function' )
+        event = new Event( 'load' );
+    else {
+        event = document.createEvent( 'Event' );
+        event.initEvent( 'load', true, false );
+    }
 
     // Update title
     document.title = data.title;
