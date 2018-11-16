@@ -17,7 +17,8 @@
         "build:jekyll": "cross-env JEKYLL_ENV=production jekyll build --config config/_config.yml",
         "build:webpack": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
         "serve:jekyll": "cross-env JEKYLL_ENV=development jekyll serve --config config/_config.yml,config/_config-dev.yml --watch",
-        "serve:webpack": "cross-env NODE_ENV=development webpack --config config/webpack.config.js --watch"
+        "serve:webpack": "cross-env NODE_ENV=development webpack --config config/webpack.config.js --watch",
+        "test": "eslint -c config/.eslintrc src/assets/javascript --ignore-path config/.eslintignore"
     },
     "dependencies": {
         "autoprefixer": "^7.1.2",
@@ -37,6 +38,9 @@
         "style-loader": "^0.18.2",
         "uglifyjs-webpack-plugin": "^0.4.6",
         "webpack": "^3.4.1"
+    },
+    "devDependencies": {
+        "eslint": "^5.9.0"
     },
     "engines": {
         "node": ">=9.1.0"
