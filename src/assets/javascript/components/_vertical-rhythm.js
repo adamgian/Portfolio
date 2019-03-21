@@ -10,12 +10,12 @@ window.addEventListener( 'resize', resizeHandler );
 
 
 function resizeHandler() {
-	if ( !resizeTimeout ) {
-		resizeTimeout = setTimeout( function() {
-			resizeTimeout = null;
-			setMediaHeight();
-		}, 100 );
-	}
+    if ( !resizeTimeout ) {
+        resizeTimeout = setTimeout( function() {
+            resizeTimeout = null;
+            setMediaHeight();
+        }, 100 );
+    }
 }
 
 
@@ -23,15 +23,15 @@ function resizeHandler() {
 
 function setMediaHeight() {
 
-	media = document.querySelectorAll( '.media' );
-	baseline = window.getComputedStyle( root ).getPropertyValue( 'line-height' );
-	baseline = parseFloat( baseline, 10 );
+    media = document.querySelectorAll( '.media' );
+    baseline = window.getComputedStyle( root ).getPropertyValue( 'line-height' );
+    baseline = parseFloat( baseline, 10 );
 
-	Array.from( media ).forEach( item => {
-		var height = item.offsetWidth * 0.6666;
-		var multiplier = Math.floor( height / baseline );
+    Array.from( media ).forEach( item => {
+        var height = item.offsetWidth * 0.6666;
+        var multiplier = Math.floor( height / baseline );
 
-		item.style.paddingBottom = `${ baseline * multiplier }px`;
-	} );
+        item.style.paddingBottom = `${ baseline * multiplier }px`;
+    } );
 
 }

@@ -79,12 +79,17 @@ function fetchHandler( event ) {
                 return fetch( event.request )
                     .then( response => {
 
+                        console.log( event.request );
+
                         // Check that response is valid:
                         //   - reponse exists
-                        //   - same origin
                         //   - succesful response
-                        if ( !response || response.type !== 'basic' || response.status !== 200 )
+                        if ( !response || response.status !== 200 )
                             return response;
+
+                        // Intercept
+                        var isInternalRequest = /(http|https):\/\/{{ site.apex }}/.test( event.request.url );
+                        if ( !isInternalRequest ) return response;
 
                         // Clone response
                         var responseToCache = response.clone();

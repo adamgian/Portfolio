@@ -1,19 +1,22 @@
 const autoprefixer = require( 'autoprefixer' );
-const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
-const UglifyJSPlugin = require( 'uglifyjs-webpack-plugin' );
-const webpack = require( 'webpack' );
+const cssnano = require( 'cssnano' );
+const miniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const path = require( 'path' );
+const postcssPresetEnv = require( 'postcss-preset-env' );
 
 
 
 
 module.exports = {
 
+    mode: 'production',
     entry: {
         polyfill: './src/assets/javascript/polyfill.js',
         main: './src/assets/javascript/main.js'
     },
     output: {
-        filename: './src/assets/javascript/[name]-bundle.min.js',
+        filename: '[name]-bundle.min.js',
+        path: path.resolve( __dirname, '../src/assets/javascript' ),
     },
 
 
@@ -25,29 +28,25 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
-                query: {
-                    presets: [ 'env' ]
-                }
             },
             {
                 test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            options: { minimize: true }
+                use: [
+                    miniCssExtractPlugin.loader,
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            ident: 'postcss',
+                            plugins: ( loader ) => [
+                                autoprefixer(),
+                                cssnano(),
+                                postcssPresetEnv(),
+                            ],
                         },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                plugins: loader => [ require('autoprefixer') ]
-                            }
-                        },
-                        {
-                            loader: 'sass-loader'
-                        }
-                    ]
-                })
+                    },
+                    'sass-loader',
+                ],
             },
         ]
     },
@@ -56,17 +55,8 @@ module.exports = {
 
 
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            name: [ 'polyfill', 'main' ]
-        }),
-        new ExtractTextPlugin({
-            allChunks: true,
-            filename: '/src/assets/styles/main.min.css',
-        }),
-        new UglifyJSPlugin({
-            compress: {
-                warnings: false,
-            },
+        new miniCssExtractPlugin({
+            filename: '../styles/main.min.css',
         }),
     ],
 
