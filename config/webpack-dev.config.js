@@ -1,6 +1,4 @@
 const autoprefixer = require( 'autoprefixer' );
-const cssnano = require( 'cssnano' );
-const miniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const path = require( 'path' );
 const postcssPresetEnv = require( 'postcss-preset-env' );
 
@@ -9,14 +7,17 @@ const postcssPresetEnv = require( 'postcss-preset-env' );
 
 module.exports = {
 
-    mode: 'production',
+    mode: 'development',
+    devtool: 'eval-source-map',
+    stats: 'minimal',
+    context: path.resolve( __dirname, '../src/assets/' ),
     entry: {
-        polyfill: './src/assets/javascript/polyfill.js',
-        main: './src/assets/javascript/main.js'
+        polyfill: './javascript/polyfill.js',
+        main: './javascript/main.js'
     },
     output: {
-        filename: '[name]-bundle.min.js',
-        path: path.resolve( __dirname, '../src/assets/javascript' ),
+        filename: './javascript/[name]-bundle.min.js',
+        path: path.resolve( __dirname, '../src/assets/' ),
     },
 
 
@@ -32,20 +33,20 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    miniCssExtractPlugin.loader,
-                    'css-loader',
+                    { loader: 'style-loader', options: { sourceMap: true } },
+                    { loader: 'css-loader', options: { sourceMap: true } },
                     {
                         loader: 'postcss-loader',
                         options: {
                             ident: 'postcss',
                             plugins: ( loader ) => [
                                 autoprefixer(),
-                                cssnano(),
                                 postcssPresetEnv(),
                             ],
+                            sourceMap: true,
                         },
                     },
-                    'sass-loader',
+                    { loader: 'sass-loader', options: { sourceMap: true } },
                 ],
             },
         ]
@@ -54,10 +55,6 @@ module.exports = {
 
 
 
-    plugins: [
-        new miniCssExtractPlugin({
-            filename: '../styles/main.min.css',
-        }),
-    ],
+    plugins: [],
 
 };
