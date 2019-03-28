@@ -15,6 +15,8 @@
 <meta name="description" content="{{ page.description }}">
 {% endif %}
 
+{% if jekyll.environment == 'production' %}
 <link rel="stylesheet" href="/assets/styles/main.min.css">
 <script src='https://www.google-analytics.com/analytics.js' async></script>
+{% endif %}
 <script src="/assets/javascript/main-bundle.min.js" defer></script>
