@@ -1,3 +1,32 @@
 [build.environment]
   NODE_VERSION = "14.4.0"
   RUBY_VERSION = "2.7.0"
+
+
+
+
+[[redirects]]
+  from = "/"
+  to = "/projects"
+  status = 301
+
+
+
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Accept-Encoding = "gzip, deflate, br"
+    Access-Control-Allow-Credentials = true
+    Cache-Control = "max-age=2595600"
+    Content-Security-Policy = "base-uri 'self'; connect-src 'self' https://www.google-analytics.com https://fonts.googleapis.com; default-src https:; img-src 'self' https://www.google-analytics.com; object-src 'none'; script-src 'unsafe-inline' https://adamgian.com https://www.google-analytics.com/analytics.js https://fonts.googleapis.com; style-src 'self'; worker-src 'self'"
+    Referrer-Policy = "origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    X-UA-Compatible = "ie=edge"
+    X-XSS-Protection = "1; mode=block"
+
+    #Server push
+    Link = '''
+    </assets/styles/main.min.css>; rel=preload; as=style, \
+    </assets/javascript/main-bundle.min.js>; rel=preload; as=script'''
