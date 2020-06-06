@@ -19,7 +19,7 @@
     Accept-Encoding = "gzip, deflate, br"
     Access-Control-Allow-Credentials = true
     Cache-Control = "max-age=2595600"
-    Content-Security-Policy = "base-uri 'self'; connect-src 'self' https://www.google-analytics.com https://fonts.googleapis.com; default-src https:; img-src 'self' https://www.google-analytics.com; object-src 'none'; script-src 'unsafe-inline' https://adamgian.com https://www.google-analytics.com/analytics.js; style-src 'self'; style-src-elem 'self' https://fonts.googleapis.com; worker-src 'self'"
+    Content-Security-Policy = "base-uri 'self'; connect-src 'self' https://www.google-analytics.com https://fonts.googleapis.com; default-src https:; img-src 'self' https://www.google-analytics.com; object-src 'none'; script-src 'unsafe-inline' https://adamgian.com https://www.google-analytics.com/analytics.js; style-src 'self' https://fonts.googleapis.com; worker-src 'self'"
     Referrer-Policy = "origin-when-cross-origin"
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
