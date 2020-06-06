@@ -52,7 +52,7 @@
         line-height:            $baseline;
         transition:             font-size 0.2s ease-in-out;
 
-        // Once typekit font is successfully downloaded —
+        // Once font has successfully downloaded —
         // only then set it as font to prevent copy from
         // not being rendered in some browsers.
         &.wf-active {
