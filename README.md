@@ -10,7 +10,7 @@ Uncompiled portfolio site source. Powered by Jekyll, NPM and Webpack. While code
 ```shell
 # Install required Ruby and npm dependencies
 bundle install
-npm install
+npm ci
 ```
 
 ```shell

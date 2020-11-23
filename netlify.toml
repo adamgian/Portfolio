@@ -9,6 +9,7 @@
   from = "http://adamgian.com/"
   to = "https://adamgian.com/projects"
   status = 301
+  force = true
 
 
 
