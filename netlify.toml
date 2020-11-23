@@ -6,8 +6,8 @@
 
 
 [[redirects]]
-  from = "/"
-  to = "/projects"
+  from = "http://adamgian.com/"
+  to = "https://adamgian.com/projects"
   status = 301
 
 
@@ -16,7 +16,6 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Accept-Encoding = "gzip, deflate, br"
     Access-Control-Allow-Credentials = true
     Cache-Control = "max-age=2595600"
     Content-Security-Policy = "base-uri 'self'; connect-src 'self' https://www.google-analytics.com https://fonts.googleapis.com; default-src https:; img-src 'self' https://www.google-analytics.com; object-src 'none'; script-src 'unsafe-inline' https://adamgian.com https://www.google-analytics.com/analytics.js; style-src 'self' https://fonts.googleapis.com; worker-src 'self'"
