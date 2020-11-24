@@ -11,6 +11,12 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "http://www.adamgian.com/"
+  to = "https://adamgian.com/projects"
+  status = 301
+  force = true
+
 
 
 

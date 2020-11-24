@@ -34,8 +34,7 @@
         font-weight:            inherit;
         line-height:            inherit;
         // Apply kerning
-        text-rendering:         optimizeLegibility;
-        font-feature-settings:  "kern" 1;
+        font-feature-settings:  'kern' on;
         font-kerning:           normal;
         // Fix sloppy rendering of font and icons
         // on both chrome and firefox on Mac OSX.
