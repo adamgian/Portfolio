@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+error() {
+    local err="$1"
+
+    echo $err >&2
+    exit 1
+}
+
+optimize() {
+    local input="$1"
+    local output="$2"
+    local format="$3"
+    local size="$4"
+
+    gm convert \
+        -define filter:support=2 \
+        -define jpeg:fancy-upsampling=off \
+        -define png:compression-filter=5 \
+        -define png:compression-level=9 \
+        -define png:compression-strategy=1 \
+        -define png:exclude-chunk=all \
+        -filter Triangle \
+        -format $format \
+        -geometry "${size}x>" \
+        -interlace none \
+        -monitor \
+        -quality 82 \
+        -sampling-factor 4:2:0 \
+        -strip \
+        -unsharp 0.25x0.08+8.3+0.045 \
+        +dither \
+        +profile "*" \
+        $input \
+        "${output}.${format}"
+}
+
+
+
+
+sources=(${1}/*.master.*)
+total=${#sources[@]}
+counter=0
+sizes=(852 1280 1440 1920 2560 3840)
+
+
+# Loop through files in directory and resize + optimise
+for file in "${sources[@]}"; do
+    counter=$(( counter + 1 ))
+    filename=$(basename "$file")
+    path=$(dirname "$file")
+    name=${filename%.*.*}
+    extension="${filename##*.}"
+
+    echo "Processing ${counter}/${total}: ${file}"
+
+    for size in ${sizes[@]}; do
+        # create webp version
+        optimize $file "${path}/${basename}${name}-${size}" webp $size
+        # create jpg/png fallback as well
+        optimize $file "${path}/${basename}${name}-${size}" $extension $size
+    done
+done
