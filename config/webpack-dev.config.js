@@ -33,20 +33,27 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    { loader: 'style-loader', options: { sourceMap: true } },
-                    { loader: 'css-loader', options: { sourceMap: true } },
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' },
                     {
                         loader: 'postcss-loader',
                         options: {
-                            ident: 'postcss',
-                            plugins: ( loader ) => [
-                                autoprefixer(),
-                                postcssPresetEnv(),
-                            ],
+                            postcssOptions: {
+                                plugins: ( loader ) => [
+                                    autoprefixer(),
+                                    postcssPresetEnv(),
+                                ],
+                            },
                             sourceMap: true,
                         },
                     },
-                    { loader: 'sass-loader', options: { sourceMap: true } },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sassOptions: {},
+                            sourceMap: true,
+                        },
+                    },
                 ],
             },
         ]
