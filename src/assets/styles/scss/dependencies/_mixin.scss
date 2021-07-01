@@ -27,8 +27,8 @@
 //    - @include size( 35px );
 
     @mixin size( $width, $height:$width ) {
-        height:                 $height;
-        width:                  $width;
+        height: $height;
+        width: $width;
     }
 
 
@@ -59,7 +59,7 @@
 
     @function is-valid-length( $value ) {
         @return ( type-of( $value ) == "number" and not unitless( $value ) )
-            or  ( index( auto initial inherit 0, $value ) != null );
+            or ( index( auto initial inherit 0, $value ) != null );
     }
 
     @mixin position( $position, $args:() ) {

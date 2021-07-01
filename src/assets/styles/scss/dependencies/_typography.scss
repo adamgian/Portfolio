@@ -27,15 +27,15 @@
         // Allows for font styles (color, typeface, size
         // and weight) to be later inherited by styles on
         // the specific element or parent.
-        color:                  inherit;
-        font-family:            inherit;
-        font-size:              inherit;
-        font-style:             inherit;
-        font-weight:            inherit;
-        line-height:            inherit;
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        font-style: inherit;
+        font-weight: inherit;
+        line-height: inherit;
         // Apply kerning
-        font-feature-settings:  'kern' on;
-        font-kerning:           normal;
+        font-feature-settings: 'kern' on;
+        font-kerning: normal;
         // Fix sloppy rendering of font and icons
         // on both chrome and firefox on Mac OSX.
         -webkit-font-smoothing: antialiased;
@@ -43,20 +43,20 @@
     }
 
     html {
-        color:                  $color--scorpion;
-        font-family:            $font-fallback;
+        color: $color--scorpion;
+        font-family: $font-fallback;
         // Fallback if fluid size is not applied.
-        font-size:              $font-size--body;
-        font-weight:            normal;
-        line-height:            $baseline;
-        transition:             font-size 0.2s ease-in-out;
+        font-size: $font-size--body;
+        font-weight: normal;
+        line-height: $baseline;
+        transition: font-size 0.2s ease-in-out;
 
         // Once font has successfully downloaded —
         // only then set it as font to prevent copy from
         // not being rendered in some browsers.
         &.wf-active {
-            font-family:            $font-primary;
-            font-weight:            450;
+            font-family: $font-primary;
+            font-weight: 450;
         }
     }
 
@@ -77,13 +77,13 @@
         // Stop font size from shrinking once under
         // the minimum breakpoint size.
         @include breakpoint( 0, $breakpoint--min ) {
-            font-size:              $font-size--body - 2px;
+            font-size: $font-size--body - 2px;
         }
 
         // Stop font size from increasing once over
         // the large breakpoint.
         @include breakpoint( l ) {
-            font-size:              $font-size--body;
+            font-size: $font-size--body;
         }
     }
 
@@ -91,36 +91,36 @@
 //  Headings -----------------------------------------------------------------------
 
     h1 {
-        font-size:              $font-size--head;
-        margin-top:             0.875rem;
-        margin-bottom:          0.875rem;
+        font-size: $font-size--head;
+        margin-top: 0.875rem;
+        margin-bottom: 0.875rem;
     }
 
     h2 {
-        font-size:              $font-size--subhead;
+        font-size: $font-size--subhead;
     }
 
 
 //  Paragraphs ---------------------------------------------------------------------
 
     p {
-        max-width:              28rem;
-        vertical-align:         bottom;
+        max-width: 28rem;
+        vertical-align: bottom;
     }
 
     p + p {
-        margin-top:             $baseline;
+        margin-top: $baseline;
     }
 
     .p--lead {
-        font-size:              $font-size--subhead;
+        font-size: $font-size--subhead;
     }
 
 
 //  Other --------------------------------------------------------------------------
 
     abbr {
-        font-variant:           none;
-        text-decoration:        none;
-        text-transform:         none;
+        font-variant: none;
+        text-decoration: none;
+        text-transform: none;
     }

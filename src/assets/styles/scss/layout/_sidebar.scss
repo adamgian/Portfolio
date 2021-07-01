@@ -13,23 +13,23 @@
 //  --------------------------------------------------------------------------------
 
     .sidebar {
-        margin:                 0 $baseline;
-        padding-bottom:         $baseline;
-        padding-top:            $baseline * 2;
+        margin: 0 $baseline;
+        padding-bottom: $baseline;
+        padding-top: $baseline * 2;
 
         @include breakpoint( m ) {
-            float:                  right;
-            width:                  $baseline * 6;
+            float: right;
+            width: $baseline * 6;
         }
 
         @include breakpoint( l ) {
-            width:                  $baseline * 8;
+            width: $baseline * 8;
         }
     }
 
     .site-nav {
         @include breakpoint( m ) {
-        	position:               fixed;
-            width:                  $baseline * 6;
+        	position: fixed;
+            width: $baseline * 6;
         }
     }

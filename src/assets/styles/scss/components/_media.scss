@@ -16,19 +16,19 @@
 //  --------------------------------------------------------------------------------
 
     .media {
-        background-color:       $color--wild-sand;
+        background-color: $color--wild-sand;
         // Force whatever element this class may be
         // applied to always display as a block.
-        display:                block;
-        overflow:               hidden;
+        display: block;
+        overflow: hidden;
         // The point of a ~66% bottom padding is that it will
         // lock the image container to a 3:2 ratio.
-        padding-bottom:         66.6666%;
-        position:               relative;
-        width:                  100%;
+        padding-bottom: 66.6666%;
+        position: relative;
+        width: 100%;
 
         + .media {
-            margin-top:             $baseline;
+            margin-top: $baseline;
         }
     }
 
@@ -36,10 +36,10 @@
     .media {
         > img,
         > video {
-            display:                block;
-            width:                  100%;
-            position:               absolute;
-            z-index:                0;
+            display: block;
+            width: 100%;
+            position: absolute;
+            z-index: 0;
         }
     }
 
@@ -51,9 +51,9 @@
         &::after {
             @include absolute( top left );
             @include size( 100% );
-            border:                 1px solid hsb( 0, 0, 0, 0.05 );
-            box-sizing:             border-box;
-            content:                '';
+            border: 1px solid hsb( 0, 0, 0, 0.05 );
+            box-sizing: border-box;
+            content: '';
         }
     }
 
@@ -72,27 +72,27 @@
     img[alt] {
         &::after,
         &::before {
-            box-sizing:             border-box;
-            color:                  rgba( 0, 0, 0, 0.2 );
-            padding:                $baseline calc( #{$baseline/2} + 1% );
+            box-sizing: border-box;
+            color: rgba( 0, 0, 0, 0.2 );
+            padding: $baseline calc( #{$baseline/2} + 1% );
         }
 
         &::after {
             @include absolute( top left );
             @include size( 100% );
-            background-color:       $color--wild-sand;
-            content:                '404';
-            font-family:            monospace;
-            font-weight:            bold;
+            background-color: $color--wild-sand;
+            content: '404';
+            font-family: monospace;
+            font-weight: bold;
         }
 
         &::before {
             @include absolute( top $baseline left );
-            content:                '“' attr( alt ) '”';
-            font-size:              0.9em;
-            font-style:             italic;
-            height:                 calc( 100% - #{$baseline * 2} );
-            width:                  100%;
-            z-index:                1;
+            content: '“' attr( alt ) '”';
+            font-size: 0.9em;
+            font-style: italic;
+            height: calc( 100% - #{$baseline * 2} );
+            width: 100%;
+            z-index: 1;
         }
     }

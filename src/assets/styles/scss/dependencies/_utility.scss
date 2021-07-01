@@ -39,9 +39,9 @@
     @mixin clearfix {
 
         &::after {
-            content:                '';
-            display:                table;
-            clear:                  both;
+            content: '';
+            display: table;
+            clear: both;
         }
 
     }
@@ -62,7 +62,7 @@
 //  Bold ---------------------------------------------------------------------------
 
     @mixin text--bold {
-        // font-weight:            $font-weight--bold !important;
+        // font-weight: $font-weight--bold !important;
     }
 
     .text--bold,
@@ -74,7 +74,7 @@
 //  Italic ---------------------------------------------------------------------------
 
     @mixin text--italic {
-        font-style:             italic !important;
+        font-style: italic !important;
     }
 
     .text--italic,

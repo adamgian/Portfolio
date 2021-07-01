@@ -16,41 +16,41 @@
     ul, ol, li, dl, dt, dd,
     h1, h2, h3, h4, h5, h6, p, a, i,
     strong, em, sub, sup,
-    fieldset, radiogroup, figure, figcaption,
+    fieldset, figure, figcaption,
     form, input, select, textarea, label, button,
     table, thead, tfoot, tbody, tr, th, td,
     img, audio, video {
-        background-color:       transparent;
-        border:                 0;
-        box-sizing:             border-box;
-        margin:                 0;
-        outline:                0;
-        padding:                0;
+        background-color: transparent;
+        border: 0;
+        box-sizing: border-box;
+        margin: 0;
+        outline: 0;
+        padding: 0;
     }
 
     // Making sure that older browsers
     // display html5 elements correctly.
     main, article, aside, details, fieldset,
-    figure, figcaption, footer, header, hgroup, menu,
-    nav, radiogroup, section {
-        display:                block;
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, section {
+        display: block;
     }
 
     table {
-        border-collapse:        collapse;
-        border-spacing:         0;
+        border-collapse: collapse;
+        border-spacing: 0;
     }
 
 
 //  Interactive elements -----------------------------------------------------------
 
     ::selection {
-        background-color:       rgba( 0, 0, 0, 0.1 );
-        color:                  $color--scorpion;
-        text-shadow:            none;
+        background-color: rgba( 0, 0, 0, 0.1 );
+        color: $color--scorpion;
+        text-shadow: none;
     }
 
     a,
     button {
-        cursor:                 pointer;
+        cursor: pointer;
     }

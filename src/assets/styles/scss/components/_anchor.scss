@@ -20,29 +20,29 @@
     .anchor {
         // Typographic underline
         // by using background image positioned beneath text.
-        background-image:       linear-gradient(
-                                    to top,
-                                    rgba( 242, 111, 24, 1 ) 2px,
-                                    rgba( 0, 0, 0, 0 ) 2px
-                                );
-        background-size:        100% 100%;
-        background-repeat:      no-repeat;
-        font-style:             normal;
-        position:               relative;
-        text-decoration:        none;
-        transition:             background-size 0.125s ease-in-out 0.25s,
-                                color 0.2s ease-in-out;
-        white-space:            nowrap;
+        background-image: linear-gradient(
+                to top,
+                rgba( 242, 111, 24, 1 ) 2px,
+                rgba( 0, 0, 0, 0 ) 2px
+            );
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        font-style: normal;
+        position: relative;
+        text-decoration: none;
+        transition: background-size 0.125s ease-in-out 0.25s,
+            color 0.2s ease-in-out;
+        white-space: nowrap;
         // Note: Required to set a z-index to create a new
         // stacking context. ie. the background pseudo element
         // (which is -1) will not obscure the anchor text.
-        z-index:                0;
+        z-index: 0;
     }
 
     // Place margin between adjacent anchors
     // (ie. anchors in nav).
     .anchor + .anchor {
-        margin-left:            $baseline / 2;
+        margin-left: $baseline / 2;
     }
 
 
@@ -50,30 +50,30 @@
 
     // Underline
     .anchor.is-active {
-        background-size:        0 100%;
+        background-size: 0 100%;
     }
 
 
     // Strikethrough
     .anchor {
         &::before {
-            border-top:             2px solid $color--tango;
-            bottom:                 calc( 0.33em + 2px );
-            content:                '';
-            left:                   -3px;
-            pointer-events:         none;
-            position:               absolute;
-            transform:              scaleX( 0 );
-            transform-origin:       100% 50%;
-            transition:             transform 0.125s ease-in;
-            width:                  calc( 100% + 6px );
+            border-top: 2px solid $color--tango;
+            bottom: calc( 0.33em + 2px );
+            content: '';
+            left: -3px;
+            pointer-events: none;
+            position: absolute;
+            transform: scaleX( 0 );
+            transform-origin: 100% 50%;
+            transition: transform 0.125s ease-in;
+            width: calc( 100% + 6px );
         }
 
         &.is-active::before {
-            transform:              scaleX( 1 );
-            transform-origin:       0% 50%;
-            transition:             border-color 0.2s ease-out,
-                                    transform 0.125s ease-out 0.1s;
+            transform: scaleX( 1 );
+            transform-origin: 0% 50%;
+            transition: border-color 0.2s ease-out,
+                transform 0.125s ease-out 0.1s;
         }
     }
 
@@ -84,8 +84,8 @@
     .anchor {
         &:focus,
         &:hover {
-            color:                  white;
-            transition:             color 0.2s ease-in-out 0.1s;
+            color: white;
+            transition: color 0.2s ease-in-out 0.1s;
         }
     }
 
@@ -93,8 +93,8 @@
     .anchor.is-active {
         &:focus::before,
         &:hover::before {
-            border-color:           $color--alabaster;
-            transition-delay:       0.1s;
+            border-color: $color--alabaster;
+            transition-delay: 0.1s;
         }
     }
 
@@ -107,22 +107,22 @@
 
         &::after {
             @include size( 100% );
-            background-color:       $color--tango;
-            content:                '';
-            display:                block;
-            left:                   -( $baseline / 6 );
-            opacity:                0;
-            padding:                ($baseline / 7) ($baseline / 6);
-            position:               absolute;
-            top:                    -( $baseline / 7 );
-            transition:             opacity 0.2s ease-in-out;
-            z-index:                -1;
+            background-color: $color--tango;
+            content: '';
+            display: block;
+            left: -( $baseline / 6 );
+            opacity: 0;
+            padding: ($baseline / 7) ($baseline / 6);
+            position: absolute;
+            top: -( $baseline / 7 );
+            transition: opacity 0.2s ease-in-out;
+            z-index: -1;
         }
 
         &:focus::after,
         &:hover::after {
-            opacity:                1;
-            transition-delay:       0.1s;
+            opacity: 1;
+            transition-delay: 0.1s;
         }
 
     }
