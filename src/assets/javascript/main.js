@@ -15,8 +15,9 @@ var isCompliantBrowser = (
     'from' in Array
 );
 
-if ( !isCompliantBrowser )
-    loadPolyfill( './assets/javascript/polyfill-bundle.min.js', main );
+// TODO
+// if ( !isCompliantBrowser )
+//     loadPolyfill( './assets/javascript/polyfill-bundle.min.js', main );
 
 
 

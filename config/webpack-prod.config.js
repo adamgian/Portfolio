@@ -15,7 +15,7 @@ module.exports = {
     stats: 'verbose',
     context: path.resolve( __dirname, '../src/' ),
     entry: {
-        polyfill: './assets/javascript/polyfill.js',
+        // polyfill: './assets/javascript/polyfill.js',
         main: './assets/javascript/main.js'
     },
     output: {
@@ -73,15 +73,26 @@ module.exports = {
                 test: /\.scss$/,
                 use: [
                     miniCssExtractPlugin.loader,
-                    'css-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            url: false,
+                        },
+                    },
                     {
                         loader: 'postcss-loader',
                         options: {
                             postcssOptions: {
-                                plugins: ( loader ) => [
-                                    autoprefixer(),
-                                    cssnano(),
-                                    postcssPresetEnv(),
+                                plugins: [
+                                    [
+                                        autoprefixer({
+                                            remove: false,
+                                        }),
+                                        cssnano({
+                                            preset: ['default'],
+                                        }),
+                                        postcssPresetEnv({}),
+                                    ]
                                 ],
                             },
                         },
