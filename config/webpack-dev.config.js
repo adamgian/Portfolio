@@ -9,7 +9,7 @@ module.exports = {
 
     mode: 'development',
     devtool: 'eval-source-map',
-    stats: 'minimal',
+    stats: 'normal',
     context: path.resolve( __dirname, '../src/assets/' ),
     entry: {
         polyfill: './javascript/polyfill.js',
@@ -30,6 +30,20 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
+                options: {
+                    ignore: [ /\/core-js/ ],
+                    sourceType: "unambiguous",
+                    presets: [
+                        [
+                            '@babel/preset-env',
+                            {
+                                corejs: 3,
+                                modules : false,
+                                useBuiltIns: 'usage',
+                            }
+                        ]
+                    ],
+                },
             },
             {
                 test: /\.scss$/,

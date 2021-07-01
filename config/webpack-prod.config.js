@@ -13,10 +13,10 @@ module.exports = {
 
     mode: 'production',
     stats: 'verbose',
-    context: path.resolve( __dirname, '../src/assets/' ),
+    context: path.resolve( __dirname, '../src/' ),
     entry: {
-        polyfill: './javascript/polyfill.js',
-        main: './javascript/main.js'
+        polyfill: './assets/javascript/polyfill.js',
+        main: './assets/javascript/main.js'
     },
     output: {
         filename: './assets/javascript/[name]-[contenthash:8].min.js',
@@ -31,12 +31,15 @@ module.exports = {
         minimize: true,
         minimizer: [
             new TerserPlugin({
+                extractComments: false,
                 parallel: true,
                 terserOptions: {
                     compress: true,
+                    ecma: 8,
                     format: {
                         comments: false
                     },
+                    safari10: true,
                 },
             }),
         ],
@@ -51,6 +54,20 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
+                options: {
+                    ignore: [ /\/core-js/ ],
+                    sourceType: "unambiguous",
+                    presets: [
+                        [
+                            '@babel/preset-env',
+                            {
+                                targets: {
+                                    esmodules: true,
+                                },
+                            }
+                        ]
+                    ],
+                },
             },
             {
                 test: /\.scss$/,
