@@ -16,15 +16,15 @@
 //  --------------------------------------------------------------------------------
 
     .content {
-        padding:                ( $baseline * 2 ) ( $baseline );
-        position:               relative;
+        padding: ( $baseline * 2 ) ( $baseline );
+        position: relative;
 
         @include breakpoint( m ) {
-            margin-right:           $baseline * 8;
+            margin-right: $baseline * 8;
         }
 
         @include breakpoint( l ) {
-            margin-right:           $baseline * 10;
+            margin-right: $baseline * 10;
         }
 
     }
@@ -37,32 +37,32 @@
         &::before {
             @include absolute( left );
             @include size( 100% );
-            background-clip:        content-box;
-            background-color:       $color--alabaster;
-            content:                '';
-            opacity:                0;
-            pointer-events:         none;
-            transition:             opacity 0.25s ease-out;
-            transition-delay:       0.25s;
-            z-index:                1;
+            background-clip: content-box;
+            background-color: $color--alabaster;
+            content: '';
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease-out;
+            transition-delay: 0.25s;
+            z-index: 1;
 
             @include breakpoint( 0, m ) {
-                border-top:             ( $baseline * 6 ) solid transparent;
-                top:                    -$baseline * 6;
+                border-top: ( $baseline * 6 ) solid transparent;
+                top: -$baseline * 6;
             }
 
             @include breakpoint( m ) {
-                border-right:           100vw solid transparent;
-                top:                    0;
+                border-right: 100vw solid transparent;
+                top: 0;
             }
         }
 
         &.is-loading::before {
-            cursor:                 wait;
-            opacity:                1;
-            pointer-events:         all;
-            transition:             opacity 0.25s ease-in;
-            transition-delay:       0s;
+            cursor: wait;
+            opacity: 1;
+            pointer-events: all;
+            transition: opacity 0.25s ease-in;
+            transition-delay: 0s;
         }
     }
 
@@ -70,36 +70,36 @@
     .content {
         &::after {
             @include absolute( top ($baseline * 2) left ($baseline) );
-            opacity:                0;
-            content:                '−';
-            font-family:            monospace;
-            pointer-events:         none;
-            transition:             opacity 0.2s ease-out;
-            transition-delay:       0s;
+            opacity: 0;
+            content: '−';
+            font-family: monospace;
+            pointer-events: none;
+            transition: opacity 0.2s ease-out;
+            transition-delay: 0s;
 
             @include breakpoint( m ) {
-                position:               fixed;
+                position: fixed;
             }
         }
 
         &.is-loading::after {
-            animation:              0.3s preloader infinite;
-            opacity:                1;
-            transition:             opacity 0.2s ease-in;
-            transition-delay:       0.5s;
-            z-index:                1;
+            animation: 0.3s preloader infinite;
+            opacity: 1;
+            transition: opacity 0.2s ease-in;
+            transition-delay: 0.5s;
+            z-index: 1;
         }
     }
 
     @keyframes preloader {
         25% {
-            content:                '\\';
+            content: '\\';
         }
         50% {
-            content:                '|';
+            content: '|';
         }
         75% {
-            content:                '/';
+            content: '/';
         }
     }
 
@@ -114,11 +114,11 @@
     .row,
     .row--section {
         + .row {
-            margin-top:             $baseline;
+            margin-top: $baseline;
         }
 
         + .row--section {
-            margin-top:             $baseline * 2;
+            margin-top: $baseline * 2;
         }
     }
 
@@ -126,20 +126,20 @@
 //  Columns ------------------------------------------------------------------------
 
     .column {
-        display:                block;
+        display: block;
 
         @include breakpoint( xs ) {
-            padding-right:          $baseline * 2;
+            padding-right: $baseline * 2;
         }
 
         @include breakpoint( s ) {
-            float:                  left;
-            width:                  50%;
+            float: left;
+            width: 50%;
         }
     }
 
     .column + .column {
         @include breakpoint( 0, s ) {
-            margin-top:             $baseline;
+            margin-top: $baseline;
         }
     }

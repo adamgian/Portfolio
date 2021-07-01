@@ -1,9 +1,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1, width=device-width">
 
-<title>{{ page.title }} — {{ site.name }}</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>
+    {% if page.title %}{{ page.title }} — {% endif %}{{ site.name }}
+</title>
 
 <link rel="canonical" href="{{ site.url }}{{ page.url }}">
 <link rel="icon" href="/assets/images/favicon.png" type="image/png">
@@ -13,8 +13,18 @@
 <meta name="description" content="{{ page.description }}">
 {% endif %}
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
 {% if jekyll.environment == 'production' %}
-<link rel="stylesheet" href="/assets/styles/main.min.css">
-<script src='https://www.google-analytics.com/analytics.js' async></script>
+    {% for asset in site.data.webpack-manifest reversed %}
+        {%- assign filetype = asset[1] | split: '.min.' -%}
+        {% if filetype[1] == 'js' %}
+            <script src="{{ asset[1] }}" defer></script>
+        {% elsif filetype[1] == 'css' %}
+            <link rel="stylesheet" href="{{ asset[1] }}">
+        {% endif %}
+    {% endfor %}
+    <!-- <script src='https://www.google-analytics.com/analytics.js' async></script> -->
+{% else %}
+    <script src="/assets/javascript/main.dev.js" defer></script>
 {% endif %}
-<script src="/assets/javascript/main-bundle.min.js" defer></script>

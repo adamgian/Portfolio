@@ -3,6 +3,8 @@ const cssnano = require( 'cssnano' );
 const miniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const path = require( 'path' );
 const postcssPresetEnv = require( 'postcss-preset-env' );
+const TerserPlugin = require( 'terser-webpack-plugin' );
+const { WebpackManifestPlugin } = require( 'webpack-manifest-plugin' );
 
 
 
@@ -10,15 +12,34 @@ const postcssPresetEnv = require( 'postcss-preset-env' );
 module.exports = {
 
     mode: 'production',
-    stats: 'minimal',
+    stats: 'verbose',
     context: path.resolve( __dirname, '../src/assets/' ),
     entry: {
         polyfill: './javascript/polyfill.js',
         main: './javascript/main.js'
     },
     output: {
-        filename: './javascript/[name]-bundle.min.js',
-        path: path.resolve( __dirname, '../src/assets/' ),
+        filename: './assets/javascript/[name]-[contenthash:8].min.js',
+        path: path.resolve( __dirname, '../src/' ),
+        publicPath: '',
+    },
+
+
+
+
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                parallel: true,
+                terserOptions: {
+                    compress: true,
+                    format: {
+                        comments: false
+                    },
+                },
+            }),
+        ],
     },
 
 
@@ -59,7 +80,18 @@ module.exports = {
 
     plugins: [
         new miniCssExtractPlugin({
-            filename: './styles/main.min.css',
+            filename: './assets/styles/main-[contenthash:8].min.css',
+        }),
+        new WebpackManifestPlugin({
+            fileName: '_data/webpack-manifest.json',
+            filter: ( file ) => {
+                return file.name !== 'polyfill.js';
+            },
+            map: ( file ) => {
+                if ( file.path.startsWith('./') )
+                    file.path = file.path.substring( 1 );
+                return file;
+            },
         }),
     ],
 

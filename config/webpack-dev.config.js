@@ -16,8 +16,9 @@ module.exports = {
         main: './javascript/main.js'
     },
     output: {
-        filename: './javascript/[name]-bundle.min.js',
-        path: path.resolve( __dirname, '../src/assets/' ),
+        filename: './assets/javascript/[name].dev.js',
+        path: path.resolve( __dirname, '../src/' ),
+        publicPath: '',
     },
 
 

@@ -10,13 +10,14 @@ src/.jekyll-cache/
 npm-debug.log
 
 # Webpack generated
-src/assets/javascript/main-bundle.min.js
-src/assets/javascript/polyfill-bundle.min.js
-src/assets/styles/main.min.css
+src/assets/javascript/*.*.js
+src/assets/styles/*.*.css
+webpack-manifest.json
 
 # OS related
 .DS_Store
 ._*
 .Spotlight-V100
 .Trashes
+[Dd]esktop.ini
 Thumbs.db

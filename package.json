@@ -9,15 +9,18 @@
     "license": "ISC",
     "private": true,
     "scripts": {
-        "clean": "rimraf \"dist/\"",
         "start": "npm run dev",
-        "build": "npm run clean && npm run build:webpack && npm run build:jekyll && npm run build:html",
-        "dev": "npm run clean && concurrently \"npm run serve:webpack\" \"npm run serve:jekyll\"",
-        "build:html": "html-minifier --input-dir \"dist/\" --output-dir \"dist/\" --file-ext \"html\" --remove-comments --collapse-whitespace --minify-js --minify-css --sort-attributes --sort-class-name",
+        "build": "npm run clean:pre && npm run build:webpack && npm run build:jekyll && npm run build:html && npm run clean:post",
+        "dev": "npm run clean:pre && concurrently \"npm run serve:webpack\" \"npm run serve:jekyll\"",
+        "analyze": "npm run clean:pre && npm run build:stats && npm run clean:post && webpack-bundle-analyzer dist/stats.json",
+        "build:html": "html-minifier-terser --input-dir \"dist/\" --output-dir \"dist/\" --file-ext \"html\" --remove-comments --collapse-whitespace --minify-js --minify-css --sort-attributes --sort-class-name",
         "build:jekyll": "cross-env JEKYLL_ENV=production jekyll build --config config/_config.yaml",
         "build:webpack": "cross-env NODE_ENV=production webpack --config config/webpack-prod.config.js",
+        "build:stats": "cross-env JEKYLL_ENV=production webpack --config config/webpack-prod.config.js --profile --json > dist/stats.json",
         "serve:jekyll": "cross-env JEKYLL_ENV=development jekyll serve --config config/_config.yaml,config/_config-dev.yaml --watch",
         "serve:webpack": "cross-env NODE_ENV=development webpack --config config/webpack-dev.config.js --watch",
+        "clean:pre": "rimraf \"dist/\" && mkdirp \"dist/\"",
+        "clean:post": "rimraf \"src/_data/webpack-manifest.json\" \"src/assets/javascript/*.*.js\" \"src/assets/styles/*.*.css\"",
         "test": "eslint -c config/.eslintrc src/assets/javascript --ignore-path config/.eslintignore"
     },
     "dependencies": {
@@ -33,7 +36,6 @@
         "css-loader": "^5.2.6",
         "cssnano": "^5.0.6",
         "eslint": "^7.29.0",
-        "html-minifier": "^4.0.0",
         "mini-css-extract-plugin": "^1.6.1",
         "node-sass": "^6.0.1",
         "path": "^0.12.7",
@@ -44,11 +46,16 @@
         "style-loader": "^3.0.0",
         "webfontloader": "^1.6.28",
         "webpack": "^5.40.0",
-        "webpack-cli": "^4.7.2"
+        "webpack-cli": "^4.7.2",
+        "webpack-manifest-plugin": "^3.1.1"
+    },
+    "devDependencies": {
+        "html-minifier-terser": "^5.1.1",
+        "webpack-bundle-analyzer": "^4.4.2"
     },
     "engines": {
-        "node": ">=14.4.0",
-        "npm": ">=6.14.5"
+        "node": ">=14.17.1",
+        "npm": ">=7.19.0"
     },
     "browserslist": [
         "> 1%",
