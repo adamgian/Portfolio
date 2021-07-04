@@ -12,7 +12,6 @@ module.exports = {
     stats: 'normal',
     context: path.resolve( __dirname, '../src/assets/' ),
     entry: {
-        polyfill: './javascript/polyfill.js',
         main: './javascript/main.js'
     },
     output: {

@@ -16,14 +16,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
 {% if jekyll.environment == 'production' %}
-    {% for asset in site.data.webpack-manifest reversed %}
-        {%- assign filetype = asset[1] | split: '.min.' -%}
-        {% if filetype[1] == 'js' %}
-            <script src="{{ asset[1] }}" defer></script>
-        {% elsif filetype[1] == 'css' %}
-            <link rel="stylesheet" href="{{ asset[1] }}">
-        {% endif %}
-    {% endfor %}
+    {% include partials/main-styles.temp.html %}
+    {% include partials/main-scripts.temp.html %}
     <!-- <script src='https://www.google-analytics.com/analytics.js' async></script> -->
 {% else %}
     <script src="/assets/javascript/main.dev.js" defer></script>

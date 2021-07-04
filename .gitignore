@@ -10,9 +10,11 @@ src/.jekyll-cache/
 npm-debug.log
 
 # Webpack generated
+src/assets/javascript/esm/
+src/assets/javascript/es5/
 src/assets/javascript/*.*.js
 src/assets/styles/*.*.css
-webpack-manifest.json
+src/**/*.temp.*
 
 # OS related
 .DS_Store

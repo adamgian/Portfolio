@@ -6,7 +6,7 @@
         "email": "contact@adamgian.com",
         "url": "adamgian.com"
     },
-    "license": "ISC",
+    "license": "UNLICENSED",
     "private": true,
     "scripts": {
         "start": "npm run dev",
@@ -20,7 +20,7 @@
         "serve:jekyll": "wait-on -d 1000 \"src/assets/javascript/main.dev.js\" && cross-env JEKYLL_ENV=development jekyll serve --config config/_config.yaml,config/_config-dev.yaml --watch",
         "serve:webpack": "cross-env NODE_ENV=development webpack --config config/webpack-dev.config.js --watch",
         "clean:pre": "rimraf \"dist/\" && mkdirp \"dist/\"",
-        "clean:post": "rimraf \"src/_data/webpack-manifest.json\" \"src/assets/javascript/*.*.js\" \"src/assets/styles/*.*.css\"",
+        "clean:post": "rimraf \"src/assets/javascript/es5/\" \"src/assets/javascript/esm/\" \"src/assets/javascript/*.*.js\" \"src/assets/styles/*.*.css\" \"src/**/*.temp.*\"",
         "test": "eslint -c config/.eslintrc src/assets/javascript --ignore-path config/.eslintignore"
     },
     "dependencies": {
@@ -44,6 +44,7 @@
         "eslint": "^7.29.0",
         "file-loader": "^6.2.0",
         "html-minifier-terser": "^5.1.1",
+        "ignore-loader": "^0.1.2",
         "mini-css-extract-plugin": "^2.0.0",
         "mkdirp": "^1.0.4",
         "node-sass": "^6.0.1",
@@ -57,8 +58,7 @@
         "wait-on": "^6.0.0",
         "webpack": "^5.41.1",
         "webpack-bundle-analyzer": "^4.4.2",
-        "webpack-cli": "^4.7.2",
-        "webpack-manifest-plugin": "^3.1.1"
+        "webpack-cli": "^4.7.2"
     },
     "engines": {
         "node": ">=14.17.1",

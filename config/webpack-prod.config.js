@@ -1,25 +1,93 @@
 const autoprefixer = require( 'autoprefixer' );
+const ChunksWebpackPlugin = require( 'chunks-webpack-plugin' );
 const cssnano = require( 'cssnano' );
 const miniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const path = require( 'path' );
 const postcssPresetEnv = require( 'postcss-preset-env' );
 const TerserPlugin = require( 'terser-webpack-plugin' );
-const { WebpackManifestPlugin } = require( 'webpack-manifest-plugin' );
 
 
 
 
-module.exports = {
+// ES5 bundle
+// Creates polyfilled ES5 JS
+const es5 = {
 
     mode: 'production',
     stats: 'verbose',
     context: path.resolve( __dirname, '../src/' ),
     entry: {
-        // polyfill: './assets/javascript/polyfill.js',
         main: './assets/javascript/main.js'
     },
     output: {
-        filename: './assets/javascript/[name]-[contenthash:8].min.js',
+        filename: './assets/javascript/es5/[name].min.js',
+        path: path.resolve( __dirname, '../src/' ),
+        publicPath: '',
+    },
+
+
+
+
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                extractComments: false,
+                parallel: true,
+                terserOptions: {
+                    format: {
+                        comments: false
+                    },
+                },
+            }),
+        ],
+    },
+
+
+
+
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                options: {
+                    ignore: [ /\/core-js/ ],
+                    sourceType: "unambiguous",
+                    presets: [
+                        [
+                            '@babel/preset-env',
+                            {
+                                corejs: 3,
+                                useBuiltIns: 'usage',
+                            }
+                        ]
+                    ],
+                },
+            },
+            {
+                test: /\.scss$/,
+                use: 'ignore-loader',
+            },
+        ]
+    },
+
+};
+
+
+// ESM bundle
+// Creates ESM JS + minified CSS
+const esm = {
+
+    mode: 'production',
+    stats: 'verbose',
+    context: path.resolve( __dirname, '../src/' ),
+    entry: {
+        main: './assets/javascript/main.js'
+    },
+    output: {
+        filename: './assets/javascript/esm/[name]-[contenthash:8].min.js',
         path: path.resolve( __dirname, '../src/' ),
         publicPath: '',
     },
@@ -110,17 +178,32 @@ module.exports = {
         new miniCssExtractPlugin({
             filename: './assets/styles/main-[contenthash:8].min.css',
         }),
-        new WebpackManifestPlugin({
-            fileName: '_data/webpack-manifest.json',
-            filter: ( file ) => {
-                return file.name !== 'polyfill.js';
+        new ChunksWebpackPlugin({
+            customFormatTags: (chunksSorted, Entrypoint) => {
+                const styles = chunksSorted.styles
+                    .map(chunkCSS => `<link rel="stylesheet" href="${chunkCSS}">`)
+                    .join('');
+
+                const scripts = chunksSorted.scripts
+                    .map(chunkJS => {
+                        return `
+                            <script>
+                                var script = document.createElement('script');
+                                script.src = (!('noModule' in script))
+                                    ? "${chunkJS.replace('assets/javascript/esm', 'assets/javascript/es5').slice(0, -16)}.min.js"
+                                    : "${chunkJS}";
+                                document.head.appendChild(script);
+                            </script>`;
+                    })
+                    .join('');
+
+                return { styles, scripts };
             },
-            map: ( file ) => {
-                if ( file.path.startsWith('./') )
-                    file.path = file.path.substring( 1 );
-                return file;
-            },
+            filename: '_includes/partials/[name]-[type].temp.html',
         }),
     ],
 
 };
+
+
+module.exports = [ es5, esm ];
